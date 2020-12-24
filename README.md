@@ -10,6 +10,6 @@ This program combines information from the STRING and PDBbind databases to train
 
 This project was created to compare the effectiveness of several machine learning algorithms as they pertain to predicting the functional relationships of given proteins.
 
-# Contrib
+## Contrib
 
 Contributions are welcome. Submit a pull request with your code or an issue for suggestions.
