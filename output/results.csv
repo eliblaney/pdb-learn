@@ -1,0 +1,402 @@
+model,accuracy
+Bayesian Ridge Regression,41
+Bayesian Ridge Regression,41
+Logistic Regression,61
+Random Forest Classifier,64
+Support Vector Classifier,72
+Bayesian Ridge Regression,41
+Logistic Regression,52
+Random Forest Classifier,51
+Support Vector Classifier,60
+Bayesian Ridge Regression,37
+Logistic Regression,55
+Random Forest Classifier,59
+Support Vector Classifier,59
+Bayesian Ridge Regression,41
+Logistic Regression,57
+Random Forest Classifier,53
+Support Vector Classifier,60
+Bayesian Ridge Regression,46
+Logistic Regression,53
+Random Forest Classifier,62
+Support Vector Classifier,61
+Bayesian Ridge Regression,41
+Logistic Regression,61
+Random Forest Classifier,59
+Support Vector Classifier,60
+Bayesian Ridge Regression,36
+Logistic Regression,56
+Random Forest Classifier,53
+Support Vector Classifier,63
+Bayesian Ridge Regression,45
+Logistic Regression,65
+Random Forest Classifier,65
+Support Vector Classifier,70
+Bayesian Ridge Regression,47
+Logistic Regression,52
+Random Forest Classifier,52
+Support Vector Classifier,59
+Bayesian Ridge Regression,49
+Logistic Regression,56
+Random Forest Classifier,60
+Support Vector Classifier,58
+Bayesian Ridge Regression,41
+Logistic Regression,59
+Random Forest Classifier,57
+Support Vector Classifier,61
+Bayesian Ridge Regression,46
+Logistic Regression,51
+Random Forest Classifier,54
+Support Vector Classifier,58
+Bayesian Ridge Regression,50
+Logistic Regression,57
+Random Forest Classifier,64
+Support Vector Classifier,61
+Bayesian Ridge Regression,36
+Logistic Regression,66
+Random Forest Classifier,65
+Support Vector Classifier,72
+Bayesian Ridge Regression,36
+Logistic Regression,58
+Random Forest Classifier,60
+Support Vector Classifier,64
+Bayesian Ridge Regression,37
+Logistic Regression,53
+Random Forest Classifier,54
+Support Vector Classifier,59
+Bayesian Ridge Regression,41
+Logistic Regression,51
+Random Forest Classifier,51
+Support Vector Classifier,58
+Bayesian Ridge Regression,39
+Logistic Regression,54
+Random Forest Classifier,60
+Support Vector Classifier,65
+Bayesian Ridge Regression,36
+Logistic Regression,58
+Random Forest Classifier,55
+Support Vector Classifier,60
+Bayesian Ridge Regression,42
+Logistic Regression,62
+Random Forest Classifier,59
+Support Vector Classifier,63
+Bayesian Ridge Regression,42
+Logistic Regression,60
+Random Forest Classifier,58
+Support Vector Classifier,65
+Bayesian Ridge Regression,44
+Logistic Regression,48
+Random Forest Classifier,50
+Support Vector Classifier,54
+Bayesian Ridge Regression,38
+Logistic Regression,56
+Random Forest Classifier,59
+Support Vector Classifier,65
+Bayesian Ridge Regression,46
+Logistic Regression,59
+Random Forest Classifier,66
+Support Vector Classifier,68
+Bayesian Ridge Regression,31
+Logistic Regression,57
+Random Forest Classifier,62
+Support Vector Classifier,64
+Bayesian Ridge Regression,32
+Logistic Regression,54
+Random Forest Classifier,51
+Support Vector Classifier,59
+Bayesian Ridge Regression,38
+Logistic Regression,63
+Random Forest Classifier,64
+Support Vector Classifier,68
+Bayesian Ridge Regression,42
+Logistic Regression,65
+Random Forest Classifier,68
+Support Vector Classifier,73
+Bayesian Ridge Regression,38
+Logistic Regression,62
+Random Forest Classifier,61
+Support Vector Classifier,62
+Bayesian Ridge Regression,40
+Logistic Regression,60
+Random Forest Classifier,64
+Support Vector Classifier,67
+Bayesian Ridge Regression,36
+Logistic Regression,53
+Random Forest Classifier,59
+Support Vector Classifier,64
+Bayesian Ridge Regression,44
+Logistic Regression,57
+Random Forest Classifier,55
+Support Vector Classifier,62
+Bayesian Ridge Regression,35
+Logistic Regression,64
+Random Forest Classifier,67
+Support Vector Classifier,70
+Bayesian Ridge Regression,33
+Logistic Regression,58
+Random Forest Classifier,54
+Support Vector Classifier,57
+Bayesian Ridge Regression,43
+Logistic Regression,60
+Random Forest Classifier,65
+Support Vector Classifier,71
+Bayesian Ridge Regression,45
+Logistic Regression,56
+Random Forest Classifier,58
+Support Vector Classifier,53
+Bayesian Ridge Regression,31
+Logistic Regression,56
+Random Forest Classifier,56
+Support Vector Classifier,63
+Bayesian Ridge Regression,32
+Logistic Regression,58
+Random Forest Classifier,51
+Support Vector Classifier,60
+Bayesian Ridge Regression,44
+Logistic Regression,56
+Random Forest Classifier,55
+Support Vector Classifier,57
+Bayesian Ridge Regression,45
+Logistic Regression,58
+Random Forest Classifier,51
+Support Vector Classifier,62
+Bayesian Ridge Regression,24
+Logistic Regression,56
+Random Forest Classifier,61
+Support Vector Classifier,64
+Bayesian Ridge Regression,38
+Logistic Regression,59
+Random Forest Classifier,59
+Support Vector Classifier,62
+Bayesian Ridge Regression,38
+Logistic Regression,54
+Random Forest Classifier,62
+Support Vector Classifier,64
+Bayesian Ridge Regression,42
+Logistic Regression,59
+Random Forest Classifier,62
+Support Vector Classifier,70
+Bayesian Ridge Regression,48
+Logistic Regression,52
+Random Forest Classifier,63
+Support Vector Classifier,61
+Bayesian Ridge Regression,37
+Logistic Regression,53
+Random Forest Classifier,52
+Support Vector Classifier,57
+Bayesian Ridge Regression,34
+Logistic Regression,46
+Random Forest Classifier,52
+Support Vector Classifier,55
+Bayesian Ridge Regression,49
+Logistic Regression,68
+Random Forest Classifier,62
+Support Vector Classifier,69
+Bayesian Ridge Regression,35
+Logistic Regression,46
+Random Forest Classifier,51
+Support Vector Classifier,56
+Bayesian Ridge Regression,40
+Logistic Regression,51
+Random Forest Classifier,54
+Support Vector Classifier,53
+Bayesian Ridge Regression,38
+Logistic Regression,61
+Random Forest Classifier,63
+Support Vector Classifier,68
+Bayesian Ridge Regression,40
+Logistic Regression,58
+Random Forest Classifier,55
+Support Vector Classifier,59
+Bayesian Ridge Regression,42
+Logistic Regression,56
+Random Forest Classifier,61
+Support Vector Classifier,66
+Bayesian Ridge Regression,45
+Logistic Regression,51
+Random Forest Classifier,47
+Support Vector Classifier,57
+Bayesian Ridge Regression,40
+Logistic Regression,56
+Random Forest Classifier,61
+Support Vector Classifier,65
+Bayesian Ridge Regression,38
+Logistic Regression,59
+Random Forest Classifier,53
+Support Vector Classifier,61
+Bayesian Ridge Regression,44
+Logistic Regression,56
+Random Forest Classifier,49
+Support Vector Classifier,58
+Bayesian Ridge Regression,35
+Logistic Regression,54
+Random Forest Classifier,51
+Support Vector Classifier,56
+Bayesian Ridge Regression,38
+Logistic Regression,46
+Random Forest Classifier,56
+Support Vector Classifier,60
+Bayesian Ridge Regression,40
+Logistic Regression,56
+Random Forest Classifier,54
+Support Vector Classifier,59
+Bayesian Ridge Regression,44
+Logistic Regression,60
+Random Forest Classifier,60
+Support Vector Classifier,63
+Bayesian Ridge Regression,40
+Logistic Regression,51
+Random Forest Classifier,64
+Support Vector Classifier,62
+Bayesian Ridge Regression,37
+Logistic Regression,48
+Random Forest Classifier,55
+Support Vector Classifier,64
+Bayesian Ridge Regression,31
+Logistic Regression,58
+Random Forest Classifier,66
+Support Vector Classifier,66
+Bayesian Ridge Regression,38
+Logistic Regression,50
+Random Forest Classifier,55
+Support Vector Classifier,59
+Bayesian Ridge Regression,38
+Logistic Regression,51
+Random Forest Classifier,49
+Support Vector Classifier,52
+Bayesian Ridge Regression,33
+Logistic Regression,53
+Random Forest Classifier,59
+Support Vector Classifier,63
+Bayesian Ridge Regression,45
+Logistic Regression,57
+Random Forest Classifier,55
+Support Vector Classifier,62
+Bayesian Ridge Regression,44
+Logistic Regression,54
+Random Forest Classifier,50
+Support Vector Classifier,62
+Bayesian Ridge Regression,41
+Logistic Regression,65
+Random Forest Classifier,62
+Support Vector Classifier,71
+Bayesian Ridge Regression,32
+Logistic Regression,47
+Random Forest Classifier,52
+Support Vector Classifier,57
+Bayesian Ridge Regression,29
+Logistic Regression,56
+Random Forest Classifier,60
+Support Vector Classifier,61
+Bayesian Ridge Regression,43
+Logistic Regression,59
+Random Forest Classifier,61
+Support Vector Classifier,59
+Bayesian Ridge Regression,38
+Logistic Regression,56
+Random Forest Classifier,51
+Support Vector Classifier,66
+Bayesian Ridge Regression,44
+Logistic Regression,61
+Random Forest Classifier,58
+Support Vector Classifier,66
+Bayesian Ridge Regression,41
+Logistic Regression,52
+Random Forest Classifier,59
+Support Vector Classifier,63
+Bayesian Ridge Regression,33
+Logistic Regression,47
+Random Forest Classifier,55
+Support Vector Classifier,55
+Bayesian Ridge Regression,39
+Logistic Regression,58
+Random Forest Classifier,61
+Support Vector Classifier,65
+Bayesian Ridge Regression,34
+Logistic Regression,59
+Random Forest Classifier,55
+Support Vector Classifier,65
+Bayesian Ridge Regression,38
+Logistic Regression,54
+Random Forest Classifier,55
+Support Vector Classifier,57
+Bayesian Ridge Regression,41
+Logistic Regression,59
+Random Forest Classifier,57
+Support Vector Classifier,64
+Bayesian Ridge Regression,44
+Logistic Regression,64
+Random Forest Classifier,63
+Support Vector Classifier,65
+Bayesian Ridge Regression,32
+Logistic Regression,56
+Random Forest Classifier,57
+Support Vector Classifier,62
+Bayesian Ridge Regression,38
+Logistic Regression,50
+Random Forest Classifier,55
+Support Vector Classifier,58
+Bayesian Ridge Regression,44
+Logistic Regression,48
+Random Forest Classifier,51
+Support Vector Classifier,65
+Bayesian Ridge Regression,37
+Logistic Regression,60
+Random Forest Classifier,59
+Support Vector Classifier,61
+Bayesian Ridge Regression,43
+Logistic Regression,54
+Random Forest Classifier,56
+Support Vector Classifier,60
+Bayesian Ridge Regression,30
+Logistic Regression,53
+Random Forest Classifier,59
+Support Vector Classifier,60
+Bayesian Ridge Regression,38
+Logistic Regression,64
+Random Forest Classifier,69
+Support Vector Classifier,74
+Bayesian Ridge Regression,40
+Logistic Regression,59
+Random Forest Classifier,68
+Support Vector Classifier,68
+Bayesian Ridge Regression,39
+Logistic Regression,56
+Random Forest Classifier,57
+Support Vector Classifier,60
+Bayesian Ridge Regression,39
+Logistic Regression,59
+Random Forest Classifier,60
+Support Vector Classifier,59
+Bayesian Ridge Regression,43
+Logistic Regression,52
+Random Forest Classifier,47
+Support Vector Classifier,49
+Bayesian Ridge Regression,40
+Logistic Regression,57
+Random Forest Classifier,62
+Support Vector Classifier,63
+Bayesian Ridge Regression,44
+Logistic Regression,63
+Random Forest Classifier,63
+Support Vector Classifier,67
+Bayesian Ridge Regression,37
+Logistic Regression,52
+Random Forest Classifier,58
+Support Vector Classifier,56
+Bayesian Ridge Regression,34
+Logistic Regression,53
+Random Forest Classifier,58
+Support Vector Classifier,59
+Bayesian Ridge Regression,34
+Logistic Regression,54
+Random Forest Classifier,52
+Support Vector Classifier,61
+Bayesian Ridge Regression,36
+Logistic Regression,57
+Random Forest Classifier,56
+Support Vector Classifier,65
+Bayesian Ridge Regression,40
+Logistic Regression,63
+Random Forest Classifier,58
+Support Vector Classifier,67

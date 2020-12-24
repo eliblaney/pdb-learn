@@ -1,0 +1,401 @@
+actual_y,correct_within_fifty,model,percent_error,predicted_y
+Bayesian Ridge Regression,207.30968250315703,541.0,61.68028049849224,0.0
+Bayesian Ridge Regression,-87.409525221262,714.0,112.24223042314594,0.0
+Bayesian Ridge Regression,68.5851451536394,230.0,70.1803716723307,0.0
+Bayesian Ridge Regression,194.01756554682913,216.0,10.177052987579104,1.0
+Bayesian Ridge Regression,24.178632451605736,662.0,96.34763860247648,0.0
+Bayesian Ridge Regression,-94.17512268930436,178.0,152.907372297362,0.0
+Bayesian Ridge Regression,544.8582682363176,397.0,37.24389628118831,1.0
+Bayesian Ridge Regression,236.28891771907308,150.0,57.52594514604872,0.0
+Bayesian Ridge Regression,181.66110420950304,185.0,1.8048085354037637,1.0
+Bayesian Ridge Regression,-85.2273796707144,155.0,154.98540623917057,0.0
+Bayesian Ridge Regression,82.31503147962626,169.0,51.29288078128624,0.0
+Bayesian Ridge Regression,19.9675021694065,354.0,94.35946266400947,0.0
+Bayesian Ridge Regression,489.94602842259553,252.0,94.42302715182362,0.0
+Bayesian Ridge Regression,150.41623025893347,161.0,6.573770025507162,1.0
+Bayesian Ridge Regression,-157.38225131184527,690.0,122.80902192925294,0.0
+Bayesian Ridge Regression,103.79856774487759,448.0,76.83067684266126,0.0
+Bayesian Ridge Regression,59.22425563996231,266.0,77.73524224061568,0.0
+Bayesian Ridge Regression,-21.323945186513683,262.0,108.13891037653194,0.0
+Bayesian Ridge Regression,239.47212795275902,479.0,50.00581879900646,0.0
+Bayesian Ridge Regression,99.98883823637328,457.0,78.12060432464479,0.0
+Bayesian Ridge Regression,72.96132934216114,177.0,58.77890997618015,0.0
+Bayesian Ridge Regression,771.0408990149826,311.0,147.92311865433524,0.0
+Bayesian Ridge Regression,268.78612231962313,936.0,71.28353394021121,0.0
+Bayesian Ridge Regression,112.27806755470884,237.0,52.625287951599645,0.0
+Bayesian Ridge Regression,664.6737484509805,720.0,7.684201604030487,1.0
+Bayesian Ridge Regression,-78.56112463691737,895.0,108.77777928904105,0.0
+Bayesian Ridge Regression,-196.1104345772912,228.0,186.01334849881192,0.0
+Bayesian Ridge Regression,97.9497135150113,245.0,60.020525095913754,0.0
+Bayesian Ridge Regression,370.1303060933017,208.0,77.9472625448566,0.0
+Bayesian Ridge Regression,242.30005073298685,968.0,74.96900302345178,0.0
+Bayesian Ridge Regression,358.22145738054627,428.0,16.30339780828358,1.0
+Bayesian Ridge Regression,211.1371976503218,408.0,48.25068685041132,1.0
+Bayesian Ridge Regression,324.7340892533832,458.0,29.0973604250255,1.0
+Bayesian Ridge Regression,12.300556094881031,190.0,93.52602310795736,0.0
+Bayesian Ridge Regression,68.03743723904331,154.0,55.819845948673176,0.0
+Bayesian Ridge Regression,-37.32472284021016,667.0,105.59591047079613,0.0
+Bayesian Ridge Regression,271.04211953949266,202.0,34.17926709875874,1.0
+Bayesian Ridge Regression,255.06081833506653,185.0,37.87071261354947,1.0
+Bayesian Ridge Regression,-32.588439043291785,965.0,103.37704031536703,0.0
+Bayesian Ridge Regression,55.580189072441954,333.0,83.30925253079822,0.0
+Bayesian Ridge Regression,-23.28485445432527,233.0,109.99349976580484,0.0
+Bayesian Ridge Regression,-74.64663443671434,222.0,133.6246101066281,0.0
+Bayesian Ridge Regression,76.33778594188026,280.0,72.73650502075705,0.0
+Bayesian Ridge Regression,83.91552229036104,271.0,69.03486262348302,0.0
+Bayesian Ridge Regression,173.9234210340881,189.0,7.97702590788989,1.0
+Bayesian Ridge Regression,223.3781540875616,188.0,18.818167067851913,1.0
+Bayesian Ridge Regression,91.9777871101572,174.0,47.13920281025449,1.0
+Bayesian Ridge Regression,-148.31627430184,237.0,162.58070645647257,0.0
+Bayesian Ridge Regression,248.4801297859808,164.0,51.512274259744395,0.0
+Bayesian Ridge Regression,156.7907644851714,205.0,23.516700251135905,1.0
+Bayesian Ridge Regression,283.3889443570722,271.0,4.571566183421478,1.0
+Bayesian Ridge Regression,107.57000673594622,430.0,74.98371936373344,0.0
+Bayesian Ridge Regression,162.0622774226411,199.0,18.56166963686377,1.0
+Bayesian Ridge Regression,382.5515077975929,227.0,68.52489330290436,0.0
+Bayesian Ridge Regression,225.34643328122996,220.0,2.4301969460136195,1.0
+Bayesian Ridge Regression,211.1395559009979,205.0,2.994905317559947,1.0
+Bayesian Ridge Regression,97.49920738821974,185.0,47.29772573609743,1.0
+Bayesian Ridge Regression,85.88085208285463,311.0,72.38557810840686,0.0
+Bayesian Ridge Regression,80.86115761321828,163.0,50.39192784465136,0.0
+Bayesian Ridge Regression,-31.994953713431116,669.0,104.7825042919927,0.0
+Bayesian Ridge Regression,500.56221995202236,217.0,130.67383407927298,0.0
+Bayesian Ridge Regression,225.66062739524295,226.0,0.15016486936152448,1.0
+Bayesian Ridge Regression,-17.50616361147938,531.0,103.29682930536335,0.0
+Bayesian Ridge Regression,351.22909675323433,334.0,5.158412201567165,1.0
+Bayesian Ridge Regression,164.23409599268973,178.0,7.733653936691162,1.0
+Bayesian Ridge Regression,205.375813555075,447.0,54.054627840027955,0.0
+Bayesian Ridge Regression,208.74889019258057,228.0,8.44346921378045,1.0
+Bayesian Ridge Regression,48.214340014343776,261.0,81.52707279143917,0.0
+Bayesian Ridge Regression,203.05654128412507,187.0,8.586385713435869,1.0
+Bayesian Ridge Regression,45.92673039311269,200.0,77.03663480344366,0.0
+Bayesian Ridge Regression,40.120434702191076,947.0,95.7634176660833,0.0
+Bayesian Ridge Regression,296.45624820958324,268.0,10.618003063277328,1.0
+Bayesian Ridge Regression,273.0428445214803,191.0,42.954368859413755,1.0
+Bayesian Ridge Regression,207.60902304600899,192.0,8.129699503129679,1.0
+Bayesian Ridge Regression,-162.89417158653055,152.0,207.16721814903326,0.0
+Bayesian Ridge Regression,-34.856497894070415,356.0,109.79115109383999,0.0
+Bayesian Ridge Regression,463.54824728046526,338.0,37.14445185812581,1.0
+Bayesian Ridge Regression,-84.10176915071166,964.0,108.72424991189953,0.0
+Bayesian Ridge Regression,6.561282384339151,917.0,99.28448392755298,0.0
+Bayesian Ridge Regression,158.26478005981795,359.0,55.91510304740447,0.0
+Bayesian Ridge Regression,68.79932106956979,417.0,83.5013618538202,0.0
+Bayesian Ridge Regression,320.210386857088,356.0,10.053262118795507,1.0
+Bayesian Ridge Regression,-155.93965056510024,193.0,180.7977464067877,0.0
+Bayesian Ridge Regression,-97.44121100948168,535.0,118.21331046906198,0.0
+Bayesian Ridge Regression,32.275115710632335,563.0,94.26729738709905,0.0
+Bayesian Ridge Regression,305.89839944862445,676.0,54.748757478014134,0.0
+Bayesian Ridge Regression,194.38702140266713,173.0,12.36244011714863,1.0
+Bayesian Ridge Regression,-87.4727489615478,230.0,138.03162998328165,0.0
+Bayesian Ridge Regression,242.49255296702444,357.0,32.07491513528728,1.0
+Bayesian Ridge Regression,-80.88883813139215,216.0,137.44853617194082,0.0
+Bayesian Ridge Regression,-125.55502803596711,915.0,113.72186098753738,0.0
+Bayesian Ridge Regression,228.59145899765093,814.0,71.91751117964975,0.0
+Bayesian Ridge Regression,87.83138178843727,224.0,60.7895617015905,0.0
+Bayesian Ridge Regression,93.5242514596647,930.0,89.94362887530487,0.0
+Bayesian Ridge Regression,-19.958546903203697,154.0,112.9600953916907,0.0
+Bayesian Ridge Regression,105.30928419665749,194.0,45.716863816155936,1.0
+Bayesian Ridge Regression,266.69605110629436,455.0,41.3854832733419,1.0
+Bayesian Ridge Regression,278.37429388293697,179.0,55.516365297730154,0.0
+Bayesian Ridge Regression,506.9618327830586,151.0,235.73631310136332,0.0
+Bayesian Ridge Regression,37.53533416089968,158.0,76.24345939183564,0.0
+Logistic Regression,0.0,541.0,100.0,0.0
+Logistic Regression,0.0,714.0,100.0,0.0
+Logistic Regression,0.0,230.0,100.0,0.0
+Logistic Regression,0.0,216.0,100.0,0.0
+Logistic Regression,0.0,662.0,100.0,0.0
+Logistic Regression,0.0,178.0,100.0,0.0
+Logistic Regression,0.0,397.0,100.0,0.0
+Logistic Regression,0.0,150.0,100.0,0.0
+Logistic Regression,0.0,185.0,100.0,0.0
+Logistic Regression,0.0,155.0,100.0,0.0
+Logistic Regression,234.0,169.0,38.46153846153847,1.0
+Logistic Regression,0.0,354.0,100.0,0.0
+Logistic Regression,0.0,252.0,100.0,0.0
+Logistic Regression,0.0,161.0,100.0,0.0
+Logistic Regression,0.0,690.0,100.0,0.0
+Logistic Regression,0.0,448.0,100.0,0.0
+Logistic Regression,0.0,266.0,100.0,0.0
+Logistic Regression,0.0,262.0,100.0,0.0
+Logistic Regression,0.0,479.0,100.0,0.0
+Logistic Regression,0.0,457.0,100.0,0.0
+Logistic Regression,189.0,177.0,6.779661016949152,1.0
+Logistic Regression,0.0,311.0,100.0,0.0
+Logistic Regression,0.0,936.0,100.0,0.0
+Logistic Regression,0.0,237.0,100.0,0.0
+Logistic Regression,0.0,720.0,100.0,0.0
+Logistic Regression,234.0,895.0,73.85474860335196,0.0
+Logistic Regression,0.0,228.0,100.0,0.0
+Logistic Regression,0.0,245.0,100.0,0.0
+Logistic Regression,0.0,208.0,100.0,0.0
+Logistic Regression,0.0,968.0,100.0,0.0
+Logistic Regression,0.0,428.0,100.0,0.0
+Logistic Regression,0.0,408.0,100.0,0.0
+Logistic Regression,0.0,458.0,100.0,0.0
+Logistic Regression,0.0,190.0,100.0,0.0
+Logistic Regression,0.0,154.0,100.0,0.0
+Logistic Regression,0.0,667.0,100.0,0.0
+Logistic Regression,0.0,202.0,100.0,0.0
+Logistic Regression,0.0,185.0,100.0,0.0
+Logistic Regression,0.0,965.0,100.0,0.0
+Logistic Regression,0.0,333.0,100.0,0.0
+Logistic Regression,0.0,233.0,100.0,0.0
+Logistic Regression,0.0,222.0,100.0,0.0
+Logistic Regression,0.0,280.0,100.0,0.0
+Logistic Regression,0.0,271.0,100.0,0.0
+Logistic Regression,0.0,189.0,100.0,0.0
+Logistic Regression,0.0,188.0,100.0,0.0
+Logistic Regression,234.0,174.0,34.48275862068966,1.0
+Logistic Regression,0.0,237.0,100.0,0.0
+Logistic Regression,0.0,164.0,100.0,0.0
+Logistic Regression,0.0,205.0,100.0,0.0
+Logistic Regression,0.0,271.0,100.0,0.0
+Logistic Regression,0.0,430.0,100.0,0.0
+Logistic Regression,0.0,199.0,100.0,0.0
+Logistic Regression,0.0,227.0,100.0,0.0
+Logistic Regression,0.0,220.0,100.0,0.0
+Logistic Regression,169.0,205.0,17.560975609756095,1.0
+Logistic Regression,0.0,185.0,100.0,0.0
+Logistic Regression,0.0,311.0,100.0,0.0
+Logistic Regression,0.0,163.0,100.0,0.0
+Logistic Regression,0.0,669.0,100.0,0.0
+Logistic Regression,0.0,217.0,100.0,0.0
+Logistic Regression,0.0,226.0,100.0,0.0
+Logistic Regression,0.0,531.0,100.0,0.0
+Logistic Regression,0.0,334.0,100.0,0.0
+Logistic Regression,0.0,178.0,100.0,0.0
+Logistic Regression,0.0,447.0,100.0,0.0
+Logistic Regression,0.0,228.0,100.0,0.0
+Logistic Regression,0.0,261.0,100.0,0.0
+Logistic Regression,169.0,187.0,9.62566844919786,1.0
+Logistic Regression,0.0,200.0,100.0,0.0
+Logistic Regression,169.0,947.0,82.15417106652588,0.0
+Logistic Regression,0.0,268.0,100.0,0.0
+Logistic Regression,0.0,191.0,100.0,0.0
+Logistic Regression,0.0,192.0,100.0,0.0
+Logistic Regression,0.0,152.0,100.0,0.0
+Logistic Regression,0.0,356.0,100.0,0.0
+Logistic Regression,0.0,338.0,100.0,0.0
+Logistic Regression,0.0,964.0,100.0,0.0
+Logistic Regression,0.0,917.0,100.0,0.0
+Logistic Regression,0.0,359.0,100.0,0.0
+Logistic Regression,169.0,417.0,59.47242206235012,0.0
+Logistic Regression,0.0,356.0,100.0,0.0
+Logistic Regression,0.0,193.0,100.0,0.0
+Logistic Regression,0.0,535.0,100.0,0.0
+Logistic Regression,0.0,563.0,100.0,0.0
+Logistic Regression,0.0,676.0,100.0,0.0
+Logistic Regression,0.0,173.0,100.0,0.0
+Logistic Regression,0.0,230.0,100.0,0.0
+Logistic Regression,0.0,357.0,100.0,0.0
+Logistic Regression,0.0,216.0,100.0,0.0
+Logistic Regression,0.0,915.0,100.0,0.0
+Logistic Regression,234.0,814.0,71.25307125307125,0.0
+Logistic Regression,0.0,224.0,100.0,0.0
+Logistic Regression,0.0,930.0,100.0,0.0
+Logistic Regression,0.0,154.0,100.0,0.0
+Logistic Regression,0.0,194.0,100.0,0.0
+Logistic Regression,0.0,455.0,100.0,0.0
+Logistic Regression,234.0,179.0,30.726256983240223,1.0
+Logistic Regression,179.0,151.0,18.543046357615893,1.0
+Logistic Regression,0.0,158.0,100.0,0.0
+Random Forest Classifier,0.0,541.0,100.0,0.0
+Random Forest Classifier,0.0,714.0,100.0,0.0
+Random Forest Classifier,0.0,230.0,100.0,0.0
+Random Forest Classifier,0.0,216.0,100.0,0.0
+Random Forest Classifier,0.0,662.0,100.0,0.0
+Random Forest Classifier,0.0,178.0,100.0,0.0
+Random Forest Classifier,0.0,397.0,100.0,0.0
+Random Forest Classifier,0.0,150.0,100.0,0.0
+Random Forest Classifier,0.0,185.0,100.0,0.0
+Random Forest Classifier,0.0,155.0,100.0,0.0
+Random Forest Classifier,0.0,169.0,100.0,0.0
+Random Forest Classifier,0.0,354.0,100.0,0.0
+Random Forest Classifier,0.0,252.0,100.0,0.0
+Random Forest Classifier,0.0,161.0,100.0,0.0
+Random Forest Classifier,0.0,690.0,100.0,0.0
+Random Forest Classifier,0.0,448.0,100.0,0.0
+Random Forest Classifier,0.0,266.0,100.0,0.0
+Random Forest Classifier,0.0,262.0,100.0,0.0
+Random Forest Classifier,0.0,479.0,100.0,0.0
+Random Forest Classifier,0.0,457.0,100.0,0.0
+Random Forest Classifier,0.0,177.0,100.0,0.0
+Random Forest Classifier,354.0,311.0,13.826366559485532,1.0
+Random Forest Classifier,0.0,936.0,100.0,0.0
+Random Forest Classifier,0.0,237.0,100.0,0.0
+Random Forest Classifier,0.0,720.0,100.0,0.0
+Random Forest Classifier,0.0,895.0,100.0,0.0
+Random Forest Classifier,0.0,228.0,100.0,0.0
+Random Forest Classifier,0.0,245.0,100.0,0.0
+Random Forest Classifier,0.0,208.0,100.0,0.0
+Random Forest Classifier,0.0,968.0,100.0,0.0
+Random Forest Classifier,0.0,428.0,100.0,0.0
+Random Forest Classifier,0.0,408.0,100.0,0.0
+Random Forest Classifier,0.0,458.0,100.0,0.0
+Random Forest Classifier,0.0,190.0,100.0,0.0
+Random Forest Classifier,0.0,154.0,100.0,0.0
+Random Forest Classifier,0.0,667.0,100.0,0.0
+Random Forest Classifier,0.0,202.0,100.0,0.0
+Random Forest Classifier,0.0,185.0,100.0,0.0
+Random Forest Classifier,0.0,965.0,100.0,0.0
+Random Forest Classifier,0.0,333.0,100.0,0.0
+Random Forest Classifier,0.0,233.0,100.0,0.0
+Random Forest Classifier,0.0,222.0,100.0,0.0
+Random Forest Classifier,0.0,280.0,100.0,0.0
+Random Forest Classifier,0.0,271.0,100.0,0.0
+Random Forest Classifier,0.0,189.0,100.0,0.0
+Random Forest Classifier,0.0,188.0,100.0,0.0
+Random Forest Classifier,0.0,174.0,100.0,0.0
+Random Forest Classifier,0.0,237.0,100.0,0.0
+Random Forest Classifier,0.0,164.0,100.0,0.0
+Random Forest Classifier,0.0,205.0,100.0,0.0
+Random Forest Classifier,0.0,271.0,100.0,0.0
+Random Forest Classifier,0.0,430.0,100.0,0.0
+Random Forest Classifier,0.0,199.0,100.0,0.0
+Random Forest Classifier,0.0,227.0,100.0,0.0
+Random Forest Classifier,0.0,220.0,100.0,0.0
+Random Forest Classifier,0.0,205.0,100.0,0.0
+Random Forest Classifier,0.0,185.0,100.0,0.0
+Random Forest Classifier,0.0,311.0,100.0,0.0
+Random Forest Classifier,0.0,163.0,100.0,0.0
+Random Forest Classifier,0.0,669.0,100.0,0.0
+Random Forest Classifier,0.0,217.0,100.0,0.0
+Random Forest Classifier,0.0,226.0,100.0,0.0
+Random Forest Classifier,0.0,531.0,100.0,0.0
+Random Forest Classifier,0.0,334.0,100.0,0.0
+Random Forest Classifier,0.0,178.0,100.0,0.0
+Random Forest Classifier,0.0,447.0,100.0,0.0
+Random Forest Classifier,0.0,228.0,100.0,0.0
+Random Forest Classifier,0.0,261.0,100.0,0.0
+Random Forest Classifier,0.0,187.0,100.0,0.0
+Random Forest Classifier,0.0,200.0,100.0,0.0
+Random Forest Classifier,0.0,947.0,100.0,0.0
+Random Forest Classifier,167.0,268.0,37.6865671641791,1.0
+Random Forest Classifier,281.0,191.0,47.12041884816754,1.0
+Random Forest Classifier,234.0,192.0,21.875,1.0
+Random Forest Classifier,0.0,152.0,100.0,0.0
+Random Forest Classifier,0.0,356.0,100.0,0.0
+Random Forest Classifier,0.0,338.0,100.0,0.0
+Random Forest Classifier,0.0,964.0,100.0,0.0
+Random Forest Classifier,0.0,917.0,100.0,0.0
+Random Forest Classifier,0.0,359.0,100.0,0.0
+Random Forest Classifier,0.0,417.0,100.0,0.0
+Random Forest Classifier,0.0,356.0,100.0,0.0
+Random Forest Classifier,0.0,193.0,100.0,0.0
+Random Forest Classifier,0.0,535.0,100.0,0.0
+Random Forest Classifier,0.0,563.0,100.0,0.0
+Random Forest Classifier,0.0,676.0,100.0,0.0
+Random Forest Classifier,0.0,173.0,100.0,0.0
+Random Forest Classifier,0.0,230.0,100.0,0.0
+Random Forest Classifier,0.0,357.0,100.0,0.0
+Random Forest Classifier,0.0,216.0,100.0,0.0
+Random Forest Classifier,0.0,915.0,100.0,0.0
+Random Forest Classifier,234.0,814.0,71.25307125307125,0.0
+Random Forest Classifier,0.0,224.0,100.0,0.0
+Random Forest Classifier,0.0,930.0,100.0,0.0
+Random Forest Classifier,0.0,154.0,100.0,0.0
+Random Forest Classifier,224.0,194.0,15.463917525773196,1.0
+Random Forest Classifier,0.0,455.0,100.0,0.0
+Random Forest Classifier,0.0,179.0,100.0,0.0
+Random Forest Classifier,0.0,151.0,100.0,0.0
+Random Forest Classifier,0.0,158.0,100.0,0.0
+Support Vector Classifier,0.0,541.0,100.0,0.0
+Support Vector Classifier,0.0,714.0,100.0,0.0
+Support Vector Classifier,0.0,230.0,100.0,0.0
+Support Vector Classifier,0.0,216.0,100.0,0.0
+Support Vector Classifier,0.0,662.0,100.0,0.0
+Support Vector Classifier,0.0,178.0,100.0,0.0
+Support Vector Classifier,0.0,397.0,100.0,0.0
+Support Vector Classifier,0.0,150.0,100.0,0.0
+Support Vector Classifier,0.0,185.0,100.0,0.0
+Support Vector Classifier,0.0,155.0,100.0,0.0
+Support Vector Classifier,0.0,169.0,100.0,0.0
+Support Vector Classifier,0.0,354.0,100.0,0.0
+Support Vector Classifier,0.0,252.0,100.0,0.0
+Support Vector Classifier,0.0,161.0,100.0,0.0
+Support Vector Classifier,0.0,690.0,100.0,0.0
+Support Vector Classifier,0.0,448.0,100.0,0.0
+Support Vector Classifier,0.0,266.0,100.0,0.0
+Support Vector Classifier,0.0,262.0,100.0,0.0
+Support Vector Classifier,0.0,479.0,100.0,0.0
+Support Vector Classifier,0.0,457.0,100.0,0.0
+Support Vector Classifier,0.0,177.0,100.0,0.0
+Support Vector Classifier,0.0,311.0,100.0,0.0
+Support Vector Classifier,0.0,936.0,100.0,0.0
+Support Vector Classifier,0.0,237.0,100.0,0.0
+Support Vector Classifier,0.0,720.0,100.0,0.0
+Support Vector Classifier,0.0,895.0,100.0,0.0
+Support Vector Classifier,0.0,228.0,100.0,0.0
+Support Vector Classifier,0.0,245.0,100.0,0.0
+Support Vector Classifier,0.0,208.0,100.0,0.0
+Support Vector Classifier,0.0,968.0,100.0,0.0
+Support Vector Classifier,0.0,428.0,100.0,0.0
+Support Vector Classifier,0.0,408.0,100.0,0.0
+Support Vector Classifier,0.0,458.0,100.0,0.0
+Support Vector Classifier,0.0,190.0,100.0,0.0
+Support Vector Classifier,0.0,154.0,100.0,0.0
+Support Vector Classifier,0.0,667.0,100.0,0.0
+Support Vector Classifier,0.0,202.0,100.0,0.0
+Support Vector Classifier,0.0,185.0,100.0,0.0
+Support Vector Classifier,0.0,965.0,100.0,0.0
+Support Vector Classifier,0.0,333.0,100.0,0.0
+Support Vector Classifier,0.0,233.0,100.0,0.0
+Support Vector Classifier,0.0,222.0,100.0,0.0
+Support Vector Classifier,0.0,280.0,100.0,0.0
+Support Vector Classifier,0.0,271.0,100.0,0.0
+Support Vector Classifier,0.0,189.0,100.0,0.0
+Support Vector Classifier,0.0,188.0,100.0,0.0
+Support Vector Classifier,0.0,174.0,100.0,0.0
+Support Vector Classifier,0.0,237.0,100.0,0.0
+Support Vector Classifier,0.0,164.0,100.0,0.0
+Support Vector Classifier,0.0,205.0,100.0,0.0
+Support Vector Classifier,0.0,271.0,100.0,0.0
+Support Vector Classifier,0.0,430.0,100.0,0.0
+Support Vector Classifier,0.0,199.0,100.0,0.0
+Support Vector Classifier,0.0,227.0,100.0,0.0
+Support Vector Classifier,0.0,220.0,100.0,0.0
+Support Vector Classifier,0.0,205.0,100.0,0.0
+Support Vector Classifier,0.0,185.0,100.0,0.0
+Support Vector Classifier,0.0,311.0,100.0,0.0
+Support Vector Classifier,0.0,163.0,100.0,0.0
+Support Vector Classifier,0.0,669.0,100.0,0.0
+Support Vector Classifier,0.0,217.0,100.0,0.0
+Support Vector Classifier,0.0,226.0,100.0,0.0
+Support Vector Classifier,0.0,531.0,100.0,0.0
+Support Vector Classifier,0.0,334.0,100.0,0.0
+Support Vector Classifier,0.0,178.0,100.0,0.0
+Support Vector Classifier,0.0,447.0,100.0,0.0
+Support Vector Classifier,0.0,228.0,100.0,0.0
+Support Vector Classifier,0.0,261.0,100.0,0.0
+Support Vector Classifier,0.0,187.0,100.0,0.0
+Support Vector Classifier,0.0,200.0,100.0,0.0
+Support Vector Classifier,0.0,947.0,100.0,0.0
+Support Vector Classifier,0.0,268.0,100.0,0.0
+Support Vector Classifier,0.0,191.0,100.0,0.0
+Support Vector Classifier,0.0,192.0,100.0,0.0
+Support Vector Classifier,0.0,152.0,100.0,0.0
+Support Vector Classifier,0.0,356.0,100.0,0.0
+Support Vector Classifier,0.0,338.0,100.0,0.0
+Support Vector Classifier,0.0,964.0,100.0,0.0
+Support Vector Classifier,0.0,917.0,100.0,0.0
+Support Vector Classifier,0.0,359.0,100.0,0.0
+Support Vector Classifier,0.0,417.0,100.0,0.0
+Support Vector Classifier,0.0,356.0,100.0,0.0
+Support Vector Classifier,0.0,193.0,100.0,0.0
+Support Vector Classifier,0.0,535.0,100.0,0.0
+Support Vector Classifier,0.0,563.0,100.0,0.0
+Support Vector Classifier,0.0,676.0,100.0,0.0
+Support Vector Classifier,0.0,173.0,100.0,0.0
+Support Vector Classifier,0.0,230.0,100.0,0.0
+Support Vector Classifier,0.0,357.0,100.0,0.0
+Support Vector Classifier,0.0,216.0,100.0,0.0
+Support Vector Classifier,0.0,915.0,100.0,0.0
+Support Vector Classifier,0.0,814.0,100.0,0.0
+Support Vector Classifier,0.0,224.0,100.0,0.0
+Support Vector Classifier,0.0,930.0,100.0,0.0
+Support Vector Classifier,0.0,154.0,100.0,0.0
+Support Vector Classifier,0.0,194.0,100.0,0.0
+Support Vector Classifier,0.0,455.0,100.0,0.0
+Support Vector Classifier,0.0,179.0,100.0,0.0
+Support Vector Classifier,0.0,151.0,100.0,0.0
+Support Vector Classifier,0.0,158.0,100.0,0.0
