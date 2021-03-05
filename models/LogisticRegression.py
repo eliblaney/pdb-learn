@@ -4,9 +4,10 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import explained_variance_score
 
 class LogisticRegression(LearningModel):
-    def __init__(self, n_splits=3):
+    def __init__(self, n_splits=3, solver=1):
         super().__init__("Logistic Regression")
-        self.model = linear_model.LogisticRegression(random_state=0)
+        solvers = ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'];
+        self.model = linear_model.LogisticRegression(random_state=0, solver=solvers[solver])
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):

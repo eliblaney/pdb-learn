@@ -4,9 +4,9 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import explained_variance_score
 
 class BayesianRidgeRegression(LearningModel):
-    def __init__(self, n_splits = 3):
+    def __init__(self, n_splits = 3, a1=1e-6, a2=1e-6, l1=1e-6, l2=1e-6):
         super().__init__("Bayesian Ridge Regression")
-        self.model = linear_model.BayesianRidge()
+        self.model = linear_model.BayesianRidge(alpha_1=a1, alpha_2=a2, lambda_1=l1, lambda_2=l2)
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):

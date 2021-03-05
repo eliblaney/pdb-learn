@@ -3,10 +3,11 @@ from models.LearningModel import LearningModel
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 
-class RandomForestClassifier(LearningModel):
+class RandomForestClassifier(LearningModel, criterion=0):
     def __init__(self, n_splits=3):
         super().__init__("Random Forest Classifier")
-        self.model = ensemble.RandomForestClassifier(n_estimators=10)
+        criterions = ['gini', 'entropy']
+        self.model = ensemble.RandomForestClassifier(n_estimators=10, criterion=criterions[criterion])
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):

@@ -18,9 +18,18 @@ with warnings.catch_warnings():
                 for r in c:
                     # The following adds each residue
                     hashid = int(hashlib.sha1(r.get_resname().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
-                    rs.append(hashid)
+                    rl = []
+                    rl.append(hashid)
+                    al = []
                     # The following adds each atom with its coordinates and b-factor
-#                    for a in r:
-#                        hashid = int(hashlib.sha1(a.get_id().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
-#                        rs.append(np.concatenate(([hashid, a.get_bfactor()], a.get_coord()), axis=None))
+                    for a in r:
+                        hashid = int(hashlib.sha1(a.get_id().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
+                        al.append(np.concatenate(([hashid, a.get_bfactor()], a.get_coord()), axis=None))
+                    rl.append(al)
+                    rs.append(rl)
+                    # to illustrate:
+                    # rs = [[rl]], rl = [hashid, [al]]
+                    # rs = [[hashid, [al]]]
+
+        # TODO: Add ligand binding, ligand primary sequences
         return rs
