@@ -12,9 +12,13 @@ def create(pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
 
     pdb_data = {}
     pdb_ids = {}
+    LIMIT = 20
     for p in pdbs:
         pdb_data[p] = pdb.get_pdb_data(p, strings.pdbbind(p))
         pdb_ids[p] = strings.strings_id(p)
+        if LIMIT == 0:
+            break
+        LIMIT = LIMIT - 1
 
     f = open(pdb_data_file, 'wb')
     pickle.dump(pdb_data, f)
