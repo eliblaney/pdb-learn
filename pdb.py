@@ -16,20 +16,20 @@ with warnings.catch_warnings():
         for m in s:
             for c in m:
                 for r in c:
-                    # The following adds each residue
-                    hashid = int(hashlib.sha1(r.get_resname().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
-                    rl = []
-                    rl.append(hashid)
+                    # Encodes a residue ("ILE") as a number (23471766)
+                    r_hashid = int(hashlib.sha1(r.get_resname().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
                     al = []
                     # The following adds each atom with its coordinates and b-factor
                     for a in r:
-                        hashid = int(hashlib.sha1(a.get_id().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
-                        al.append(np.concatenate(([hashid, a.get_bfactor()], a.get_coord()), axis=None))
-                    rl.append(al)
-                    rs.append(rl)
-                    # to illustrate:
-                    # rs = [[rl]], rl = [hashid, [al]]
-                    # rs = [[hashid, [al]]]
+                        # Encodes the atom name as a number
+                        a_hashid = int(hashlib.sha1(a.get_id().encode('UTF-8')).hexdigest(), 16) % (10 ** 8)
+                        al.append(a_hashid)
+                        al.append(a.get_bfactor())
+                        al.append(a.get_coord())
+                    # Add the array of residue hash + atom hash, b factor, coordinates for each atom and add
+                    rs.append([r_hashid, al])
 
         # TODO: Add ligand binding, ligand primary sequences
-        return rs
+
+        # Finally, flatten the array of residues
+        return rs.ravel(order='C')
