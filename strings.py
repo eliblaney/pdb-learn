@@ -24,34 +24,49 @@ def pdbbind(pdb_id, general = False):
         pdbbind = DIR_PDBBIND_GENERAL
     return os.path.join(pdbbind, '{0}/{0}_protein.pdb'.format(pdb_id))
 
-def setup(pdbbind_refined='pdbbind-refined', pdbbind_general='pdbbind_general', stringsdb='stringsdb-v11.0', version='11.0'):
+def pdbbind_pocket(pdb_id, general = False):
+    """Retrieve a filename pointing to a particular protein specified by its PDB ID"""
+    pdbbind = DIR_PDBBIND
+    if general:
+        pdbbind = DIR_PDBBIND_GENERAL
+    return os.path.join(pdbbind, '{0}/{0}_pocket.pdb'.format(pdb_id))
+
+def setup(pdbbind_refined='pdbbind-refined', pdbbind_general='pdbbind_general', stringsdbf='stringsdb-v11.0', version='11.0'):
     """Load the STRING and PDBbind databases"""
+    global DIR_PDBBIND, DIR_PDBBIND_GENERAL, DIR_STRINGSDB, pdbs, pdbs_general, DF_ALIASES, DF_INFO, DF_LINKS
+
     DIR_PDBBIND = pdbbind_refined
     DIR_PDBBIND_GENERAL = pdbbind_general
-    DIR_STRINGSDB = stringsdb
+    DIR_STRINGSDB = stringsdbf
 
     pdbs = next(os.walk(DIR_PDBBIND))[1]
     pdbs_general = next(os.walk(DIR_PDBBIND_GENERAL))[1]
 
-    if DF_ALIASES is None:
-        DF_ALIASES = pd.read_csv(stringsdb('aliases', DIR_STRINGSDB, version), sep="\t")
-    if DF_INFO is None:
-        DF_INFO = pd.read_csv(stringsdb('info', DIR_STRINGSDB, version), sep="\t")
-    if DF_LINKS is None:
-        DF_LINKS = pd.read_csv(stringsdb('links.full', DIR_STRINGSDB, version), sep="\s+")
+    DF_ALIASES = pd.read_csv(stringsdb('aliases', DIR_STRINGSDB, version), sep="\t")
+    DF_INFO = pd.read_csv(stringsdb('info', DIR_STRINGSDB, version), sep="\t")
+    DF_LINKS = pd.read_csv(stringsdb('links.full', DIR_STRINGSDB, version), sep="\s+")
 
-def strings_id(pdb_id, aliases=DF_ALIASES):
+def strings_id(pdb_id, aliases=None):
     """Get the STRING ID of a protein from its PDB ID"""
+    global DF_ALIASES
+    if aliases is None:
+        aliases = DF_ALIASES
     result = aliases.query('alias == "{}"'.format(pdb_id.upper()))
     return result.to_numpy()[0][0] if result.size > 0 else None
 
-def from_name(name, info=DF_INFO):
+def from_name(name, info=None):
     """Get the STRING ID of a protein from its name"""
+    global DF_INFO
+    if info is None:
+        info = DF_INFO
     result = info.query('preferred_name == "{}"'.format(name.upper()))
     return result.to_numpy()[0][0] if result.size > 0 else None
 
-def scores(p1, p2, links=DF_LINKS):
+def scores(p1, p2, links=None):
     """Retrieve all the scores for a particular protein-protein relationship"""
+    global DF_LINKS
+    if links is None:
+        links = DF_LINKS
     result = links.query('protein1 == "{}" & protein2 == "{}"'.format(p1, p2))
     return result.to_numpy()[0][2:] if result.size > 0 else []
 

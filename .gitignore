@@ -4,3 +4,5 @@ stringsdb*
 pdbbind*
 .R*
 *.pkl
+images/
+*.rtf
