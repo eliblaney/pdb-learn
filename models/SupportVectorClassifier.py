@@ -4,10 +4,9 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 
 class SupportVectorClassifier(LearningModel):
-    def __init__(self, n_splits=5, kernel=2, degree=3, coef0=0.0, probability=False):
+    def __init__(self, options, n_splits=5):
         super().__init__("Support Vector Classifier")
-        kernels = ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed']
-        self.model = svm.SVC(kernel=kernels[kernel], degree=degree, coef0=coef0, probability=probability)
+        self.model = svm.SVC(kernel=options.kernel, gamma=options.gamma, probability=options.probability)
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):
@@ -16,3 +15,11 @@ class SupportVectorClassifier(LearningModel):
             y_train, y_test = y[train_index], y[test_index]
             self.model.fit(x_train, y_train)
             self.accuracy.append(accuracy_score(y_test, self.model.predict(x_test), normalize=True)*100)
+
+    @staticmethod
+    def get_default_options():
+        return {
+                'kernel': ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'],
+                'gamma': ['scale', 'auto'],
+                'probability': [False, True]
+                }

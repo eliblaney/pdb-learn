@@ -1,18 +1,19 @@
 import os
 from datetime import datetime
 import joblib
+from mutators import PermutationalMutator
 
 class LearningModel:
     name = "Unknown Learning Model"
     model = None
     accuracy = []
+    mutator = None
 
     def __init__(self, name):
         self.name = name
 
     def fit(self, x, y):
         raise NotImplementedError("Subclass must implement fit(x,y)")
-
     def predict(self, x):
         return self.model.predict(x)
 
@@ -36,6 +37,10 @@ class LearningModel:
             return True
         else:
             return False
+
+    @staticmethod
+    def get_default_options():
+        raise NotImplementedError("Subclass must implement get_default_options()")
 
     def __str__(self):
         return self.name
