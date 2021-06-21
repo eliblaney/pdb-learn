@@ -5,12 +5,14 @@ from mutators import PermutationalMutator
 
 class LearningModel:
     name = "Unknown Learning Model"
+    options = None
     model = None
     accuracy = []
     mutator = None
 
-    def __init__(self, name):
+    def __init__(self, name, options):
         self.name = name
+        self.options = options
 
     def fit(self, x, y):
         raise NotImplementedError("Subclass must implement fit(x,y)")
@@ -22,6 +24,9 @@ class LearningModel:
 
     def get_model(self):
         return self.model
+
+    def get_options(self):
+        return self.options
 
     def save(self, dir="saved_models"):
         if not os.path.exists(dir):
