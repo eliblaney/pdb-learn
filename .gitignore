@@ -6,3 +6,4 @@ pdbbind*
 *.pkl
 images/
 *.rtf
+*.log
