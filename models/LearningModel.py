@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 import joblib
-from mutators import PermutationalMutator
 import uuid
 
 class LearningModel:

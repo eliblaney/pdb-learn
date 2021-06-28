@@ -1,9 +1,11 @@
+import os
 import random
+import joblib
 import numpy as np
 import pandas as pd
 from sklearn.impute import SimpleImputer
 from models.BayesianRidgeRegression import BayesianRidgeRegression
-from models.LogisticRegression import LogisticRegression
+from models.LogisticRegression import LogisticRegression 
 from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 import pdb
@@ -46,19 +48,23 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
 
     model_scores = {}
 
-    for m in models:
-        model_scores[str(m)] = 0
-        for i in range(len(xs)):
-            predictedy = m.predict([xs[i]])[0]
-            actualy = ys[i]
-            correct = actualy == round(predictedy)
+    with alive_bar(len(models), title='Predicting') as bar:
+        for m in models:
+            m = load_model(m)
+            name = m.get_full_name()
+            model_scores[name] = 0
+            for i in range(len(xs)):
+                predictedy = m.predict([xs[i]])[0]
+                actualy = ys[i]
+                correct = actualy == round(predictedy)
 
-            predictions = predictions.append([{'model': str(m), 'predicted_y': predictedy, 'actual_y': actualy, 'correct': 1 if correct else 0}])
+                predictions = predictions.append([{'model': name, 'predicted_y': predictedy, 'actual_y': actualy, 'correct': 1 if correct else 0}])
 
-            if correct:
-                model_scores[str(m)] += 1
+                if correct:
+                    model_scores[name] += 1
 
-        model_scores[str(m)] /= (len(ys)/100.0)
+            model_scores[name] /= (len(ys)/100.0)
+            bar()
 
     logging.debug("--- RESULTS ---")
     for m in model_scores.keys():
@@ -67,30 +73,20 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
 
     return (predictions, results)
 
-def predict(sdb, num=100, each=100, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, models=None):
+def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, model_dir='saved_models/'):
     """Run `num` rounds of `each` predictions on the models"""
     pdbs = sdb.get_pdbs(general=True)
 
     logging.debug('Running %s prediction rounds of %s each', num, each)
     logging.debug("Total predictions: %s", num * each)
 
-    if not models:
-        logging.debug("Loading models...")
-        models = [
-            BayesianRidgeRegression(),
-            LogisticRegression(),
-            RandomForestClassifier(),
-            SupportVectorClassifier()
-        ]
-        for m in default_models:
-            logging.debug("Loading {!s}...", m)
-            m.load()
+    models = os.listdir(model_dir)
 
     predictions = pd.DataFrame(columns=['model','predicted_y','actual_y','correct'])
     results = pd.DataFrame(columns=['model','accuracy'])
     for i in range(num):
-        loggin.debug('----------------------------')
-        loggin.debug('Round: {} [of {}]', i + 1, num)
+        logging.debug('----------------------------')
+        logging.debug('Round: {} [of {}]', i + 1, num)
         (predictions, results) = _run_predictions(predictions, results, models, max_length, each)
 
     logging.debug('----------------------------')
@@ -99,3 +95,24 @@ def predict(sdb, num=100, each=100, prediction_file='predictions.csv', results_f
     results.to_csv(results_file, index=False)
 
     return (prediction_file, results_file)
+
+def load_model(path):
+    if not os.path.exists(path):
+        return None
+
+    name = os.path.basename(path).split(".")[0]
+    model = joblib.load(path)
+    m = None
+    if name == 'Bayesian Ridge Regression':
+        m = BayesianRidgeRegression(None)
+    elif name == 'Logistic Regression':
+        m = LogisticRegression(None)
+    elif name == 'Random Forest Classifier':
+        m = RandomForestClassifier(None)
+    elif name == 'Support Vector Classifier':
+        m = SupportVectorClassifier(None)
+    else:
+        return None
+
+    m.model = model
+    return m
