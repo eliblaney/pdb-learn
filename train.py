@@ -8,7 +8,6 @@ from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 from mutators.PermutationalMutator import PermutationalMutator
 from mutators.GeneticMutator import GeneticMutator
-import strings
 
 default_models = [
     BayesianRidgeRegression,
@@ -27,13 +26,9 @@ def chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
-def train(models=default_models, mutators=default_mutators, chunksize=64, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
+def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     """Train models on given PDB data"""
-    print("Reading STRING data...")
-    strings.setup()
-
-    print("Reading PDB data...")
-    pdbs = strings.get_pdbs()
+    pdbs = sdb.get_pdbs()
     f = open(pdb_data_file, 'rb')
     pdb_data = pickle.load(f)
     f.close()
@@ -64,7 +59,7 @@ def train(models=default_models, mutators=default_mutators, chunksize=64, pdb_da
                     print("------------------------------")
                     print("PROGRESS: {}%, {} / {}".format(i*100*chunksize/len(pdbs), i*chunksize, len(pdbs)))
 
-                    max_length = max(_run_training(sublist, m, pdb_ids, pdb_data), max_length)
+                    max_length = max(_run_training(sdb, sublist, m, pdb_ids, pdb_data), max_length)
                     i += 1
 
     print("Max length: {}", max_length)
@@ -83,7 +78,7 @@ def train(models=default_models, mutators=default_mutators, chunksize=64, pdb_da
     print("Done training.")
     return (model_objs, max_length)
 
-def _run_training(sublist, models, pdb_ids, pdb_data):
+def _run_training(sdb, sublist, models, pdb_ids, pdb_data):
     """Perform one round of training on the models using a given sublist of data"""
     print("--- READING SCORES ---")
     x = pd.DataFrame()
@@ -100,7 +95,7 @@ def _run_training(sublist, models, pdb_ids, pdb_data):
                     arr = [np.concatenate((data1, data2), axis=None).tolist()]
                     max_length = max(len(arr[0]), max_length)
                     x = x.append(arr)
-                    score_class = strings.score_mapped(id1, id2)[0]
+                    score_class = sdb.score_mapped(id1, id2)[0]
                     y.append(score_class)
 
     imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)

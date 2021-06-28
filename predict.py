@@ -1,5 +1,3 @@
-print("Importing libraries...")
-
 import random
 import numpy as np
 import pandas as pd
@@ -8,16 +6,7 @@ from models.BayesianRidgeRegression import BayesianRidgeRegression
 from models.LogisticRegression import LogisticRegression
 from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
-import strings
 import pdb
-
-print("--- PREPARING DATA ---")
-
-print("Reading STRING data...")
-strings.setup()
-
-print("Reading PDB data...")
-pdbs = strings.get_pdbs(general=True)
 
 def rand_pdb():
     """Select a random PDB entry from the set"""
@@ -77,8 +66,11 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
 
     return (predictions, results)
 
-def predict(num=100, each=100, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, models=None):
+def predict(sdb, num=100, each=100, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, models=None):
     """Run `num` rounds of `each` predictions on the models"""
+    print("Reading PDB data...")
+    pdbs = sdb.get_pdbs(general=True)
+
     print('Running {} prediction rounds of {} each'.format(num, each))
     print("Total predictions: {}".format(num * each))
 

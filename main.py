@@ -1,12 +1,19 @@
+import os
 import sys
 import logging
 import datetime
 import createpdbs
 import train
+import strings
+import predict
 
 def main():
+    LOG_DIR = 'logs/'
+
     now = datetime.datetime.now()
-    logging.basicConfig(filename="{}.log".format(now), encoding='utf-8', level=logging.DEBUG, filemode='w', format='[%(asctime)s %(levelname)8s] %(message)s')
+    if not os.path.isdir(LOG_DIR):
+        os.mkdir(LOG_DIR)
+    logging.basicConfig(filename="{}/{}.log".format(LOG_DIR, now), encoding='utf-8', level=logging.DEBUG, filemode='w', format='[%(asctime)s %(levelname)8s] %(message)s')
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
     formatter = logging.Formatter('[%(levelname)s] %(message)s')
@@ -15,15 +22,22 @@ def main():
 
     logging.debug("Program started %s", now)
 
+    logging.info("Importing databases...")
+    sdb = strings.StringsDB()
+    logging.info("Finished importing databases.")
+
+    logging.info("Exporting PDBs...")
     # Read databases and store PDB representations
-    createpdbs.create()
+    createpdbs.create(sdb)
+    logging.info("Finished exporting PDBs.")
 
+    logging.info("Starting training")
     # Train all models
-    (models, max_length) = train.train()
+    (models, max_length) = train.train(sdb)
 
+    logging.info("Starting predictions")
     # Run model predictions
-    import predict
-    predict.predict(num=100, each=100, max_length=max_length, models=models)
+    predict.predict(sdb, num=100, each=100, max_length=max_length, models=models)
 
 if __name__ == "__main__":
     main()

@@ -1,23 +1,17 @@
 import numpy as np
 import pandas as pd
 import pickle
-import strings
 import pdb
 
-def create(pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
-    print("--- PREPARING DATA ---")
-
-    strings.setup()
-
-    print("Reading PDB data...")
-    pdbs = strings.get_pdbs()
+def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
+    pdbs = sdb.get_pdbs()
 
     pdb_data = {}
     pdb_ids = {}
     LIMIT = 20
     for p in pdbs:
-        pdb_data[p] = pdb.get_pdb_data(p, strings.pdbbind(p), strings.pdbbind_pocket(p))
-        pdb_ids[p] = strings.strings_id(p)
+        pdb_data[p] = pdb.get_pdb_data(p, sdb.pdbbind(p), sdb.pdbbind_pocket(p))
+        pdb_ids[p] = sdb.strings_id(p)
         if LIMIT != -1:
             LIMIT = LIMIT - 1
             if LIMIT == 0: break
