@@ -6,7 +6,7 @@ import logging
 from alive_progress import alive_bar
 
 def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
-    LIMIT = 20
+    LIMIT = -1
     pdbs = sdb.get_pdbs()
     total = LIMIT if LIMIT != -1 else len(pdbs)
     total = 5*total+2
