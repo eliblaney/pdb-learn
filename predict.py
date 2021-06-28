@@ -7,6 +7,7 @@ from models.LogisticRegression import LogisticRegression
 from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 import pdb
+import logging
 
 def rand_pdb():
     """Select a random PDB entry from the set"""
@@ -17,7 +18,7 @@ def rand_pdb():
 
 def _run_predictions(predictions, results, models, max_len=3720, num=100):
     """Run num predictions on the models"""
-    print("Max length: {}".format(max_len))
+    logging.debug("Max length: %s", max_len)
     xs = pd.DataFrame(columns=np.arange(0,max_len))
     ys = []
     i = num
@@ -33,15 +34,15 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
                     xs = xs.append(arr)
                     i -= 1
                     if i % 25 == 0 and i > 0:
-                        print("{} remaining...".format(i))
+                        logging.debug("%s remaining...", i)
 
     imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
     xs = imp.fit_transform(xs.to_numpy())
     ys = np.array(ys)
-    print("Added {} rows.".format(len(xs)))
-    print("Shape: {}".format(xs.shape))
+    logging.debug("Added %s rows.", len(xs))
+    logging.debug("Shape: %s", xs.shape)
 
-    print("--- PREDICTING ---")
+    logging.info("Running predictions")
 
     model_scores = {}
 
@@ -59,23 +60,22 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
 
         model_scores[str(m)] /= (len(ys)/100.0)
 
-    print("--- RESULTS ---")
+    logging.debug("--- RESULTS ---")
     for m in model_scores.keys():
-        print("{}: {} percent".format(m, model_scores[m]))
+        logging.debug("{}: {} percent".format(m, model_scores[m]))
         results = results.append([{'model': str(m), 'accuracy': model_scores[m]}])
 
     return (predictions, results)
 
 def predict(sdb, num=100, each=100, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, models=None):
     """Run `num` rounds of `each` predictions on the models"""
-    print("Reading PDB data...")
     pdbs = sdb.get_pdbs(general=True)
 
-    print('Running {} prediction rounds of {} each'.format(num, each))
-    print("Total predictions: {}".format(num * each))
+    logging.debug('Running %s prediction rounds of %s each', num, each)
+    logging.debug("Total predictions: %s", num * each)
 
     if not models:
-        print("Loading models...")
+        logging.debug("Loading models...")
         models = [
             BayesianRidgeRegression(),
             LogisticRegression(),
@@ -83,20 +83,19 @@ def predict(sdb, num=100, each=100, prediction_file='predictions.csv', results_f
             SupportVectorClassifier()
         ]
         for m in default_models:
-            print("Loading {!s}...".format(m))
+            logging.debug("Loading {!s}...", m)
             m.load()
 
     predictions = pd.DataFrame(columns=['model','predicted_y','actual_y','correct'])
     results = pd.DataFrame(columns=['model','accuracy'])
     for i in range(num):
-        print('----------------------------')
-        print('Round: {} [of {}]'.format(i + 1, num))
+        loggin.debug('----------------------------')
+        loggin.debug('Round: {} [of {}]', i + 1, num)
         (predictions, results) = _run_predictions(predictions, results, models, max_length, each)
 
-    print('----------------------------')
-    print('Saving predictions...')
+    logging.debug('----------------------------')
+    logging.debug('Saving predictions...')
     predictions.to_csv(prediction_file, index=False)
     results.to_csv(results_file, index=False)
 
-    print('Finished predicting.')
     return (prediction_file, results_file)

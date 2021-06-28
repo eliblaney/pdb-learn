@@ -8,6 +8,8 @@ from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 from mutators.PermutationalMutator import PermutationalMutator
 from mutators.GeneticMutator import GeneticMutator
+import logging
+from alive_progress import alive_bar
 
 default_models = [
     BayesianRidgeRegression,
@@ -37,7 +39,7 @@ def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, p
     f.close()
 
     total_iterations = len(pdb_ids) ** 2
-    print("Total iterations: {}".format(total_iterations))
+    logging.debug("Total iterations: %s", total_iterations)
 
     sublists = list(chunks(pdbs, chunksize))
 
@@ -50,32 +52,28 @@ def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, p
             while mutator.hasNext():
                 m = mutator.next()
                 model_objs[mutator.get_name()].append({'options': mutator.get_current_options(), 'model': m})
-                print("[{!s}]: Created {!s} with options:".format(mutator, m))
-                print(mutator.get_current_options())
+                logging.debug("[%s]: Created %s with options: %s", mutator, m, mutator.get_current_options())
                 i = 0
                 for sublist in sublists:
-                    print("------------------------------")
-                    print("Running on: {}".format(sublist))
-                    print("------------------------------")
+                    logging.debug("Running on: %s", sublist)
                     print("PROGRESS: {}%, {} / {}".format(i*100*chunksize/len(pdbs), i*chunksize, len(pdbs)))
 
                     max_length = max(_run_training(sdb, sublist, m, pdb_ids, pdb_data), max_length)
                     i += 1
 
-    print("Max length: {}", max_length)
+    logging.debug("Max length: %s", max_length)
 
-    print("--- SAVING ---")
+    logging.info("Saving...")
 
     for m in model_objs:
-        print("Saving {!s}...".format(m))
+        logging.info("Saving %s...", m)
         m.save()
 
-    print("--- ACCURACY CHECKS ---")
+    logging.info("Running accuracy checks...")
 
     for m in model_objs:
-        print("{!s}: {}".format(m, m.get_accuracy()))
+        logging.debug("%s: %s", m, m.get_accuracy())
 
-    print("Done training.")
     return (model_objs, max_length)
 
 def _run_training(sdb, sublist, models, pdb_ids, pdb_data):
