@@ -10,13 +10,15 @@ class GeneticMutator(AbstractMutator):
     index = 0
     num_elite = 5
     num_worst = 5
+    total = 1
 
     def __init__(self, model, population_size=20, generations=50, num_elite=5, num_worst=5):
         super().__init__("GeneticMutator", model)
         self.N = population_size
         self.max_generations = generations
-        num_elite = num_elite 
-        num_worst = num_worst 
+        self.num_elite = num_elite 
+        self.num_worst = num_worst 
+        self.total = self.N * self.max_generations
 
         # Create initial population at random
         for i in range(self.N):
@@ -73,7 +75,7 @@ class GeneticMutator(AbstractMutator):
             o[k] = random.choice(self.options[k])
             self.population[j] = self.model(o)
 
-    def hasNext(self):
+    def has_next(self):
         return self.index < self.N or self.generation_num < self.max_generations
 
     def get_generation(self):
@@ -89,3 +91,5 @@ class GeneticMutator(AbstractMutator):
 
         return self.model(o)
 
+    def get_estimated_total(self):
+        return total

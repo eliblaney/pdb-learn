@@ -5,6 +5,7 @@ class PermutationalMutator(AbstractMutator):
     first = True
     lens = None
     pos = None
+    self.total = 1
 
     def __init__(self, model):
         super().__init__("PermutationalMutator", model)
@@ -12,7 +13,9 @@ class PermutationalMutator(AbstractMutator):
         self.pos = {}
         it = self.options.items()
         for k, v in it:
-            self.lens[k] = len(v)
+            l = len(v)
+            self.total = self.total * l
+            self.lens[k] = l
             self.pos[k] = 0
 
     def next(self):
@@ -31,5 +34,8 @@ class PermutationalMutator(AbstractMutator):
 
         return self.model(self.current)
 
-    def hasNext(self):
+    def has_next(self):
         return self.first or sum(self.pos.values()) > 0
+
+    def get_estimated_total(self):
+        return self.total

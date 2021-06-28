@@ -20,8 +20,11 @@ class AbstractMutator:
     def next(self):
         raise NotImplementedError("Subclass must implement next()")
 
-    def hasNext(self):
-        raise NotImplementedError("Subclass must implement hasNext()")
+    def has_next(self):
+        raise NotImplementedError("Subclass must implement has_next()")
+
+    def get_estimated_total(self):
+        raise NotImplementedError("Subclass must implement get_estimated_total()")
 
     def __str__(self):
         return self.name
