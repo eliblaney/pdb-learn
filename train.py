@@ -43,42 +43,36 @@ def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, p
 
     sublists = list(chunks(pdbs, chunksize))
 
-    model_objs = {}
     max_length = 0
     for model_type in models:
+        logging.info("Training models of type: %s", model_type.__name__)
         for mutator_type in mutators:
             mutator = mutator_type(model_type)
-            model_objs[mutator.get_name()] = []
-            while mutator.hasNext():
-                m = mutator.next()
-                model_objs[mutator.get_name()].append({'options': mutator.get_current_options(), 'model': m})
-                logging.debug("[%s]: Created %s with options: %s", mutator, m, mutator.get_current_options())
-                i = 0
-                for sublist in sublists:
-                    logging.debug("Running on: %s", sublist)
-                    print("PROGRESS: {}%, {} / {}".format(i*100*chunksize/len(pdbs), i*chunksize, len(pdbs)))
+            logging.info("Using %s", mutator.get_name())
+            logging.debug("Estimated length: %s", mutator.get_estimated_total())
+            with alive_bar(mutator.get_estimated_total(), 'Training') as bar:
+                while mutator.has_next():
+                    m = mutator.next()
+                    logging.debug("[%s] Created %s with options: %s", mutator, m, mutator.get_current_options())
+                    # i = 0
+                    for sublist in sublists:
+                        logging.debug("Running on: %s", sublist)
+                        # print("PROGRESS: {}%, {} / {}".format(i*100*chunksize/len(pdbs), i*chunksize, len(pdbs)))
 
-                    max_length = max(_run_training(sdb, sublist, m, pdb_ids, pdb_data), max_length)
-                    i += 1
+                        max_length = max(_run_training(sdb, sublist, m, pdb_ids, pdb_data), max_length)
+                        # i += 1
+
+                    logging.debug("Accuracy of %s: %s", m.get_full_name(), m.get_accuracy())
+                    m.save()
+                    bar()
 
     logging.debug("Max length: %s", max_length)
 
-    logging.info("Saving...")
-
-    for m in model_objs:
-        logging.info("Saving %s...", m)
-        m.save()
-
-    logging.info("Running accuracy checks...")
-
-    for m in model_objs:
-        logging.debug("%s: %s", m, m.get_accuracy())
-
-    return (model_objs, max_length)
+    return max_length
 
 def _run_training(sdb, sublist, models, pdb_ids, pdb_data):
     """Perform one round of training on the models using a given sublist of data"""
-    print("--- READING SCORES ---")
+    logging.debug("Reading scores")
     x = pd.DataFrame()
     y = []
     max_length = 0
@@ -100,17 +94,14 @@ def _run_training(sdb, sublist, models, pdb_ids, pdb_data):
     x = x.to_numpy()
     x = imp.fit_transform(x)
     y = np.array(y)
-    print("Added {} rows.".format(len(x)))
+    logging.debug("Added %s rows.", len(x))
 
-    print("--- TRAINING ---")
-
-    print("Training {!s}... ".format(m), end='')
+    logging.debug("Training %s...", m.get_full_name(), end='')
     try:
         m.fit(x, y)
-        print("No errors.")
     except ValueError:
-        print("Warning: Only one class found, skipping...")
+        logging.warning("Only one class found, skipping...")
     except:
-        print("Unexpected error: {!s}".format(e))
+        logging.error("Unexpected error: %s", e)
 
     return max_length

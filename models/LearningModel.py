@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 import joblib
 from mutators import PermutationalMutator
+import uuid
 
 class LearningModel:
     name = "Unknown Learning Model"
@@ -9,10 +10,12 @@ class LearningModel:
     model = None
     accuracy = []
     mutator = None
+    uuid = None
 
     def __init__(self, name, options):
         self.name = name
         self.options = options
+        self.uuid = str(uuid.uuid4())
 
     def fit(self, x, y):
         raise NotImplementedError("Subclass must implement fit(x,y)")
@@ -32,13 +35,12 @@ class LearningModel:
         if not os.path.exists(dir):
             os.makedirs(dir)
         model = self.get_model()
-        joblib.dump(model, '{}/{}.model'.format(dir, self.name.lower()).replace(' ', '_'))
+        joblib.dump(model, '{}/{}.model'.format(dir, self.get_full_name().lower().replace(' ', '_'), uuid))
 
-    def load(self, dir="saved_models"):
-        path = '{}/{}.model'.format(dir, self.name.lower()).replace(' ', '_')
+    def load(self, path):
         if os.path.exists(path):
             self.model = joblib.load(path)
-            accuracy = []
+            self.accuracy = []
             return True
         else:
             return False
@@ -49,3 +51,6 @@ class LearningModel:
 
     def __str__(self):
         return self.name
+
+    def get_full_name(self):
+        return self.name + '.' + self.uuid

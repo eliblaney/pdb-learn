@@ -6,6 +6,7 @@ import createpdbs
 import train
 import strings
 import predict
+from alive_progress import config_handler
 
 def main():
     LOG_DIR = 'logs/'
@@ -22,6 +23,7 @@ def main():
 
     logging.debug("Program started %s", now)
 
+    config_handler.set_global(unknown='dots_waves', bar='blocks')
     logging.info("Importing databases...")
     sdb = strings.StringsDB()
     logging.info("Finished importing databases.")
@@ -33,11 +35,11 @@ def main():
 
     logging.info("Starting training")
     # Train all models
-    (models, max_length) = train.train(sdb)
+    max_length = train.train(sdb)
 
     logging.info("Starting predictions")
     # Run model predictions
-    predict.predict(sdb, num=100, each=100, max_length=max_length, models=models)
+    predict.predict(sdb, num=100, each=100, max_length=max_length)
 
 if __name__ == "__main__":
     main()

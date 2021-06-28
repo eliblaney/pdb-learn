@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from alive_progress import alive_bar
 
 class StringsDB:
     DIR_PDBBIND = None
@@ -18,12 +19,17 @@ class StringsDB:
         self.DIR_PDBBIND_GENERAL = pdbbind_general
         self.DIR_STRINGSDB = stringsdbf
 
-        self.pdbs = next(os.walk(self.DIR_PDBBIND))[1]
-        self.pdbs_general = next(os.walk(self.DIR_PDBBIND_GENERAL))[1]
+        with alive_bar(title='Importing databases') as bar:
+            bar.text('pdbbind')
+            self.pdbs = next(os.walk(self.DIR_PDBBIND))[1]
+            self.pdbs_general = next(os.walk(self.DIR_PDBBIND_GENERAL))[1]
+            bar()
 
-        self.DF_ALIASES = pd.read_csv(self.stringsdb('aliases', self.DIR_STRINGSDB, version), sep="\t")
-        self.DF_INFO = pd.read_csv(self.stringsdb('info', self.DIR_STRINGSDB, version), sep="\t")
-        self.DF_LINKS = pd.read_csv(self.stringsdb('links.full', self.DIR_STRINGSDB, version), sep="\s+")
+            bar.text('stringsdb')
+            self.DF_ALIASES = pd.read_csv(self.stringsdb('aliases', self.DIR_STRINGSDB, version), sep="\t")
+            self.DF_INFO = pd.read_csv(self.stringsdb('info', self.DIR_STRINGSDB, version), sep="\t")
+            self.DF_LINKS = pd.read_csv(self.stringsdb('links.full', self.DIR_STRINGSDB, version), sep="\s+")
+            bar()
 
     def stringsdb(self, type, stringsdb_folder, version='11.0'):
         """Retrieve a filename pointing to the given STRING database type in the given folder"""

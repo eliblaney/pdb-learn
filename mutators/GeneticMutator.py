@@ -25,7 +25,7 @@ class GeneticMutator(AbstractMutator):
             self.population.append(self.random_model())
 
     def next(self):
-        if not self.hasNext():
+        if not self.has_next():
             raise Exception("No next model available")
 
         if self.index == self.N:
@@ -92,4 +92,4 @@ class GeneticMutator(AbstractMutator):
         return self.model(o)
 
     def get_estimated_total(self):
-        return total
+        return self.total
