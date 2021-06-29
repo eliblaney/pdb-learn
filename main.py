@@ -14,7 +14,7 @@ def main():
     now = datetime.datetime.now()
     if not os.path.isdir(LOG_DIR):
         os.mkdir(LOG_DIR)
-    logging.basicConfig(filename="{}/{}.log".format(LOG_DIR, now), encoding='utf-8', level=logging.DEBUG, filemode='w', format='[%(asctime)s %(levelname)8s] %(message)s')
+    logging.basicConfig(filename="{}/{}.log".format(LOG_DIR, now), level=logging.DEBUG, filemode='w', format='[%(asctime)s %(levelname)8s] %(message)s')
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
     formatter = logging.Formatter('[%(levelname)s] %(message)s')

@@ -70,7 +70,7 @@ def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, p
 
     return max_length
 
-def _run_training(sdb, sublist, models, pdb_ids, pdb_data):
+def _run_training(sdb, sublist, m, pdb_ids, pdb_data):
     """Perform one round of training on the models using a given sublist of data"""
     logging.debug("Reading scores")
     x = pd.DataFrame()

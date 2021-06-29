@@ -14,7 +14,7 @@ class StringsDB:
     DF_INFO = None
     DF_LINKS = None
 
-    def __init__(self, pdbbind_refined='pdbbind-refined', pdbbind_general='pdbbind_general', stringsdbf='stringsdb-v11.0', version='11.0'):
+    def __init__(self, pdbbind_refined='pdbbind-refined', pdbbind_general='pdbbind-general', stringsdbf='stringsdb-v11.0', version='11.0'):
         self.DIR_PDBBIND = pdbbind_refined
         self.DIR_PDBBIND_GENERAL = pdbbind_general
         self.DIR_STRINGSDB = stringsdbf
