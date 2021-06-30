@@ -1,3 +1,6 @@
+import config
+import strings
+import logging
 import numpy as np
 from models.BayesianRidgeRegression import BayesianRidgeRegression
 from models.LogisticRegression import LogisticRegression
@@ -5,9 +8,7 @@ from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 from mutators.PermutationalMutator import PermutationalMutator
 from mutators.GeneticMutator import GeneticMutator
-import logging
 from alive_progress import alive_bar
-import config
 
 default_models = [
     BayesianRidgeRegression,

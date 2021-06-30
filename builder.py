@@ -23,7 +23,7 @@ def build(sdb):
     total_iterations = len(pdbs) ** 2
     logging.debug("Total iterations: %s", total_iterations)
 
-    with alive_bar(total_iterations)**2) as bar:
+    with alive_bar(total_iterations**2) as bar:
         for pdb1 in pdbs:
             for pdb2 in pdbs:
                 if pdb1 in pdb_ids and pdb2 in pdb_ids:
