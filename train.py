@@ -96,7 +96,7 @@ def _run_training(sdb, sublist, m, pdb_ids, pdb_data):
     y = np.array(y)
     logging.debug("Added %s rows.", len(x))
 
-    logging.debug("Training %s...", m.get_full_name(), end='')
+    logging.debug("Training %s...", m.get_full_name())
     try:
         m.fit(x, y)
     except ValueError:
