@@ -28,7 +28,7 @@ class PDBBuilder:
         f.close()
 
     def build(self, cpus=8):
-        pdbs = self.pdb_ids.keys()
+        pdbs = list(self.pdb_ids.keys())
         pdb_chunks = self.chunks(pdbs, cpus)
 
         self.x = pd.DataFrame()
