@@ -11,7 +11,7 @@ from alive_progress import alive_bar
 class PDBBuilder:
 
     sdb = None
-    x = pd.DataFrame()
+    x = []
     y = []
     max_length = 0
     pdb_ids = None
@@ -31,7 +31,7 @@ class PDBBuilder:
         pdbs = list(self.pdb_ids.keys())
         pdb_chunks = self.chunks(pdbs, cpus)
 
-        self.x = pd.DataFrame()
+        self.x = []
         self.y = []
         self.max_length = 0
 
@@ -44,7 +44,7 @@ class PDBBuilder:
                 _thread.start_new_thread(self._build, (chunk, bar))                
 
         imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
-        self.x = self.x.to_numpy()
+        self.x = np.array(self.x)
         self.x = imp.fit_transform(self.x)
         self.y = np.array(self.y)
 
@@ -65,7 +65,7 @@ class PDBBuilder:
                     data2 = self.pdb_data[pdb2]
                     arr = [np.concatenate((data1, data2), axis=None).tolist()]
                     self.max_length = max(len(arr[0]), self.max_length)
-                    self.x = self.x.append(arr)
+                    self.x.append(arr)
                     score_class = self.sdb.score_mapped(id1, id2)[0]
                     self.y.append(score_class)
                 bar()
