@@ -48,8 +48,8 @@ def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, i
                         m.fit(x, y)
                     except ValueError:
                         logging.warning("Only one class found, skipping...")
-                    except:
-                        logging.error("Unexpected error: %s", e)
+                    except Exception as e:
+                        logging.error("Unexpected exception: %s", e)
         
                     logging.debug("Accuracy of %s: %s", m.get_full_name(), m.get_accuracy())
                     m.save()

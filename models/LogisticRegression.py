@@ -6,7 +6,7 @@ from sklearn.metrics import explained_variance_score
 class LogisticRegression(LearningModel):
     def __init__(self, options, n_splits=3):
         super().__init__("Logistic Regression", options)
-        if options:
+        if options is not None:
             self.model = linear_model.LogisticRegression(solver=options.solver)
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 

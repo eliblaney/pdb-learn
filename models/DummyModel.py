@@ -4,7 +4,7 @@ from models.LearningModel import LearningModel
 class DummyModel(LearningModel):
 
     def __init__(self, options):
-        super().__init__("Logistic Regression", options)
+        super().__init__("Dummy Model", options)
         print(options)
 
     @staticmethod

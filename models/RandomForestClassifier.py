@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 class RandomForestClassifier(LearningModel):
     def __init__(self, options, n_splits=3):
         super().__init__("Random Forest Classifier", options)
-        if options:
+        if options is not None:
             self.model = ensemble.RandomForestClassifier(n_estimators=options.n_estimators, criterion=n_options.criterion)
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
