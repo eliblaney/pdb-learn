@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import logging
 import strings
-import thread
+import _thread
 from sklearn.impute import SimpleImputer
 from alive_progress import alive_bar
 
@@ -41,7 +41,7 @@ class PDBBuilder:
         logging.info("Starting %s threads", cpus)
         with alive_bar(total_iterations**2) as bar:
             for chunk in pdb_chunks:
-                thread.start_new_thread(self._build, (chunk, bar))                
+                _thread.start_new_thread(self._build, (chunk, bar))                
 
         imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
         self.x = self.x.to_numpy()
@@ -80,5 +80,5 @@ if __name__ == "__main__":
     sdb = strings.StringsDB()
     logging.info("Finished importing databases.")
 
-    b = Builder(sdb)
+    b = PDBBuilder(sdb)
     b.build()
