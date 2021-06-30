@@ -1,4 +1,5 @@
 import config
+import strings
 import numpy as np
 import pandas as pd
 import pickle
@@ -88,4 +89,8 @@ def pad(to_pad, N, padder):
     return to_pad
 
 if __name__ == "__main__":
+    logging.info("Importing databases...")
+    sdb = strings.StringsDB()
+    logging.info("Finished importing databases.")
+
     create()
