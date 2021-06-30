@@ -10,6 +10,7 @@ from models.RandomForestClassifier import RandomForestClassifier
 from models.SupportVectorClassifier import SupportVectorClassifier
 import pdb
 import logging
+import config
 
 def rand_pdb():
     """Select a random PDB entry from the set"""
@@ -17,6 +18,29 @@ def rand_pdb():
     pdb_data = pdb.get_pdb_data(p, strings.pdbbind(p, general=True))
     strings_id = strings.strings_id(p)
     return (pdb_data, strings_id)
+
+def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, model_dir='saved_models/'):
+    """Run `num` rounds of `each` predictions on the models"""
+    pdbs = sdb.get_pdbs(general=True)
+
+    logging.debug('Running %s prediction rounds of %s each', num, each)
+    logging.debug("Total predictions: %s", num * each)
+
+    models = os.listdir(model_dir)
+
+    predictions = pd.DataFrame(columns=['model','predicted_y','actual_y','correct'])
+    results = pd.DataFrame(columns=['model','accuracy'])
+    for i in range(num):
+        logging.debug('----------------------------')
+        logging.debug('Round: {} [of {}]', i + 1, num)
+        (predictions, results) = _run_predictions(predictions, results, models, max_length, each)
+
+    logging.debug('----------------------------')
+    logging.debug('Saving predictions...')
+    predictions.to_csv(prediction_file, index=False)
+    results.to_csv(results_file, index=False)
+
+    return (prediction_file, results_file)
 
 def _run_predictions(predictions, results, models, max_len=3720, num=100):
     """Run num predictions on the models"""
@@ -73,29 +97,6 @@ def _run_predictions(predictions, results, models, max_len=3720, num=100):
 
     return (predictions, results)
 
-def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, model_dir='saved_models/'):
-    """Run `num` rounds of `each` predictions on the models"""
-    pdbs = sdb.get_pdbs(general=True)
-
-    logging.debug('Running %s prediction rounds of %s each', num, each)
-    logging.debug("Total predictions: %s", num * each)
-
-    models = os.listdir(model_dir)
-
-    predictions = pd.DataFrame(columns=['model','predicted_y','actual_y','correct'])
-    results = pd.DataFrame(columns=['model','accuracy'])
-    for i in range(num):
-        logging.debug('----------------------------')
-        logging.debug('Round: {} [of {}]', i + 1, num)
-        (predictions, results) = _run_predictions(predictions, results, models, max_length, each)
-
-    logging.debug('----------------------------')
-    logging.debug('Saving predictions...')
-    predictions.to_csv(prediction_file, index=False)
-    results.to_csv(results_file, index=False)
-
-    return (prediction_file, results_file)
-
 def load_model(path):
     if not os.path.exists(path):
         return None
@@ -116,3 +117,10 @@ def load_model(path):
 
     m.model = model
     return m
+
+if __name__ == "__main__":
+    logging.info("Importing databases...")
+    sdb = strings.StringsDB()
+    logging.info("Finished importing databases.")
+
+    predict(sdb)
