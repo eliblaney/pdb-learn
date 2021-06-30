@@ -93,4 +93,4 @@ if __name__ == "__main__":
     sdb = strings.StringsDB()
     logging.info("Finished importing databases.")
 
-    create()
+    create(sdb)
