@@ -22,12 +22,7 @@ default_mutators = [
     GeneticMutator,
 ]
 
-def chunks(lst, n):
-    """Yield successive n-sized chunks from lst."""
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
-
-def train(sdb, models=default_models, mutators=default_mutators, chunksize=64, inputs_file='inputs.np', outputs_file='outputs.np'):
+def train(sdb, models=default_models, mutators=default_mutators, inputs_file='inputs.np', outputs_file='outputs.np'):
     """Train models on given PDB data"""
     x = np.load(inputs_file)
     y = np.load(outputs_file)
