@@ -1,4 +1,7 @@
+import config
 import os
+import errno
+import logging
 import pandas as pd
 from alive_progress import alive_bar
 
@@ -18,6 +21,18 @@ class StringsDB:
         self.DIR_PDBBIND = pdbbind_refined
         self.DIR_PDBBIND_GENERAL = pdbbind_general
         self.DIR_STRINGSDB = stringsdbf
+
+        if not os.path.isdir(self.DIR_PDBBIND):
+            logging.error("Refined PDBbind database does not exist. Please add it under %s", self.DIR_PDBBIND)
+            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), self.DIR_PDBBIND)
+
+        if not os.path.isdir(self.DIR_PDBBIND_GENERAL):
+            logging.error("General PDBbind database does not exist. Please add it under %s", self.DIR_PDBBIND_GENERAL)
+            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), self.DIR_PDBBIND_GENERAL)
+
+        if not os.path.isdir(self.DIR_STRINGSDB):
+            logging.error("StringsDB database folder does not exist. Please add it under %s", self.DIR_STRINGSDB)
+            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), self.DIR_STRINGSDB)
 
         with alive_bar(title='Importing databases') as bar:
             bar.text('pdbbind')
