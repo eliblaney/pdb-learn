@@ -7,7 +7,7 @@ import strings
 from sklearn.impute import SimpleImputer
 from alive_progress import alive_bar
 
-def build(sdb):
+def build(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     pdbs = sdb.get_pdbs()
     f = open(pdb_data_file, 'rb')
     pdb_data = pickle.load(f)
