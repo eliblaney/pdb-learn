@@ -1,3 +1,4 @@
+import config
 import numpy as np
 import pandas as pd
 import pickle
@@ -61,8 +62,7 @@ def pad_pdbs(bar, pdb_data):
     logging.debug("Longest number of residues: %s", longest_num_residues)
 
     bar.text("Padding pdbs")
-    # pad(pdb_data.values(), longest_num_residues, [np.nan] * longest_residue_length)
-    pad(pdb_data.values(), longest_num_residues, [np.nan])
+    pad(pdb_data.values(), longest_num_residues, [np.nan] * longest_residue_length)
 
     bar.text("Flattening")
     for pdb in pdb_data:
@@ -87,9 +87,5 @@ def pad(to_pad, N, padder):
 
     return to_pad
 
-def main():
-    print("Creating PDB files...")
-    create()
-
 if __name__ == "__main__":
-    main()
+    create()
