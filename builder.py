@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import logging
 import strings
-import _thread
+from threading import Thread
 from sklearn.impute import SimpleImputer
 from alive_progress import alive_bar
 
@@ -39,9 +39,15 @@ class PDBBuilder:
         logging.debug("Total iterations: %s", total_iterations)
 
         logging.info("Starting %s threads", cpus)
+        threads = []
         with alive_bar(total_iterations) as bar:
             for chunk in pdb_chunks:
-                _thread.start_new_thread(self._build, (chunk, bar))
+                t = Thread(target=self._build, (chunk, bar))
+                t.start()
+                threads.append(t)
+
+        for t in threads:
+            t.join()
 
         imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
         self.x = pd.DataFrame(self.x).to_numpy()
