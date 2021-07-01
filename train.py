@@ -47,7 +47,7 @@ def train_partitioned(sdb, folder='data', models=default_models, mutators=defaul
             
             with alive_bar(len_models, 'Models') as bar2:
                 for mp in models:
-                    m = load_model(mp)
+                    m = load_model('saved_models/' + mp)
 
                     logging.debug("Training %s on partition %s", m.get_full_name(), str(i))
                     try:
@@ -95,7 +95,7 @@ def load_model(path):
     if not os.path.exists(path):
         return None
 
-    name = os.path.basename(path).split("\.")[0]
+    name = os.path.basename(path).split(".")[0]
     model = joblib.load(path)
     m = None
     if name == 'Bayesian Ridge Regression':
