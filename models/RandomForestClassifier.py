@@ -7,7 +7,7 @@ class RandomForestClassifier(LearningModel):
     def __init__(self, options, n_splits=3):
         super().__init__("Random Forest Classifier", options)
         if options is not None:
-            self.model = ensemble.RandomForestClassifier(n_estimators=options.n_estimators, criterion=n_options.criterion)
+            self.model = ensemble.RandomForestClassifier(n_estimators=options['n_estimators'], criterion=options['criterion'])
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):

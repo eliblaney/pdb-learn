@@ -7,7 +7,7 @@ class SupportVectorClassifier(LearningModel):
     def __init__(self, options, n_splits=5):
         super().__init__("Support Vector Classifier", options)
         if options is not None:
-            self.model = svm.SVC(kernel=options.kernel, gamma=options.gamma, probability=options.probability)
+            self.model = svm.SVC(kernel=options['kernel'], gamma=options['gamma'], probability=options['probability'])
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):

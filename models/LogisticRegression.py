@@ -7,7 +7,7 @@ class LogisticRegression(LearningModel):
     def __init__(self, options, n_splits=3):
         super().__init__("Logistic Regression", options)
         if options is not None:
-            self.model = linear_model.LogisticRegression(solver=options.solver)
+            self.model = linear_model.LogisticRegression(solver=options['solver'])
         self.kf = StratifiedKFold(n_splits, shuffle=False)
 
     def fit(self, x, y):
