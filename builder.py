@@ -64,8 +64,13 @@ class PDBBuilder:
         np.save('outputs.np', self.y)
 
     def _build(self, chunk, bar):
+        i = 0
         for pdb1 in chunk:
             for pdb2 in chunk:
+                i = i + 1
+                if i % 100 == 0 and memory() < 100000000: # Below 100 MB memory
+                    logging.warning("Running out of memory, stopping thread.")
+                    return
                 id1 = self.pdb_ids[pdb1]
                 data1 = self.pdb_data[pdb1]
                 id2 = self.pdb_ids[pdb2]
@@ -81,6 +86,16 @@ class PDBBuilder:
         """Yield successive n-sized chunks from lst."""
         for i in range(0, len(lst), n):
             yield lst[i:i + n]
+
+    def memory():
+        with open('/proc/meminfo', 'r') as mem:
+            ret = 0
+            for i in mem:
+                sline = i.split()
+                if str(sline[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
+                    ret += int(sline[1])
+        return ret
+
 
 if __name__ == "__main__":
     logging.info("Importing databases...")
