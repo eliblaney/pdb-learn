@@ -95,7 +95,7 @@ def load_model(path):
     if not os.path.exists(path):
         return None
 
-    name = os.path.basename(path).split(".")[0]
+    name = os.path.basename(path).split("\.")[0]
     model = joblib.load(path)
     m = None
     if name == 'Bayesian Ridge Regression':
