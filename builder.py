@@ -34,7 +34,7 @@ class PDBBuilder:
         pdbs = self.chunks(self.pdbs, num_partitions)
         for i in range(num_partitions):
             logging.info("Buliding partition %s", i)
-            self.build(pdbs=pdbs, inputfile='input_' + i, outputfile='output_' + i)
+            self.build(pdbs=pdbs, inputfile='input_' + str(i), outputfile='output_' + str(i))
 
     def build(self, pdbs=None, cpus=8, inputfile='inputs', outputfile='outputs'):
         if pdbs is None:
