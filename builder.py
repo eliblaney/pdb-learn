@@ -13,9 +13,9 @@ class PDBBuilder:
     sdb = None
     x = []
     y = []
-    max_length = 0
     pdb_ids = None
     pdb_data = None
+    pdbs = None
 
     def __init__(self, sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         self.sdb = sdb
@@ -27,15 +27,22 @@ class PDBBuilder:
         self.pdb_ids = pickle.load(f)
         f.close()
 
-    def build(self, limit=0, cpus=8):
-        pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
-        if limit > 0:
-            pdbs = pdbs[:limit]
+        self.pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
+
+    
+    def partition(self, num_partitions, cpus=8):
+        pdbs = self.chunks(pdbs, num_partitions)
+        for i in range(num_partitions):
+            logging.info("Buliding partition %s", i)
+            self.build(pdbs=pdbs, inputfile='input_' + i + '.np', outputfile='output_' + i + '.np')
+
+    def build(self, pdbs=None, cpus=8, inputfile='inputs.np' outputfile='outputs.np'):
+        if pdbs is None:
+            pdbs = self.pdbs
         pdb_chunks = self.chunks(pdbs, cpus)
 
         self.x = []
         self.y = []
-        self.max_length = 0
 
         total_iterations = len(pdbs) ** 2
         logging.debug("Total iterations: %s", total_iterations)
@@ -58,25 +65,19 @@ class PDBBuilder:
 
         logging.debug("Input shape: %s", self.x.shape)
         logging.debug("Output shape: %s", self.y.shape)
-        logging.debug("Max length: %s", self.max_length)
 
-        np.save('inputs.np', self.x)
-        np.save('outputs.np', self.y)
+        folder = 'data'
+        np.save(folder + '/' + inputfile, self.x)
+        np.save(folder + '/' + outputfile, self.y)
 
     def _build(self, chunk, bar):
-        i = 0
         for pdb1 in chunk:
             for pdb2 in chunk:
-                i = i + 1
-                if i % 100 == 0 and memory() < 100000000: # Below 100 MB memory
-                    logging.warning("Running out of memory, stopping thread.")
-                    return
                 id1 = self.pdb_ids[pdb1]
                 data1 = self.pdb_data[pdb1]
                 id2 = self.pdb_ids[pdb2]
                 data2 = self.pdb_data[pdb2]
                 arr = [np.concatenate((data1, data2), axis=None).tolist()]
-                self.max_length = max(len(arr[0]), self.max_length)
                 self.x.append(arr)
                 score_class = self.sdb.score_mapped(id1, id2)[0]
                 self.y.append(score_class)
@@ -87,20 +88,10 @@ class PDBBuilder:
         for i in range(0, len(lst), n):
             yield lst[i:i + n]
 
-    def memory():
-        with open('/proc/meminfo', 'r') as mem:
-            ret = 0
-            for i in mem:
-                sline = i.split()
-                if str(sline[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
-                    ret += int(sline[1])
-        return ret
-
-
 if __name__ == "__main__":
     logging.info("Importing databases...")
     sdb = strings.StringsDB()
     logging.info("Finished importing databases.")
 
     b = PDBBuilder(sdb)
-    b.build()
+    b.partition(30)
