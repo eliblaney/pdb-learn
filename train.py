@@ -41,7 +41,7 @@ def train_partitioned(sdb, folder='data', models=default_models, mutators=defaul
     total_partitions = len(inputs)
     i = 0
     with alive_bar(total_partitions, 'Partition') as bar:
-        while i < total_partititions:
+        while i < total_partitions:
             x = np.load(folder + '/' + inputs[i])
             y = np.load(folder + '/' + outputs[i])
             
