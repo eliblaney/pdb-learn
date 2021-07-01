@@ -28,7 +28,7 @@ class PDBBuilder:
         f.close()
 
     def build(self, cpus=8):
-        pdbs = list(self.pdb_ids.keys())
+        pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
         pdb_chunks = self.chunks(pdbs, cpus)
 
         self.x = []
@@ -39,7 +39,7 @@ class PDBBuilder:
         logging.debug("Total iterations: %s", total_iterations)
 
         logging.info("Starting %s threads", cpus)
-        with alive_bar(total_iterations**2) as bar:
+        with alive_bar(total_iterations) as bar:
             for chunk in pdb_chunks:
                 _thread.start_new_thread(self._build, (chunk, bar))                
 
@@ -58,16 +58,15 @@ class PDBBuilder:
     def _build(self, chunk, bar):
         for pdb1 in chunk:
             for pdb2 in chunk:
-                if self.pdb_ids[pdb1] is not None and self.pdb_ids[pdb2] is not None:
-                    id1 = self.pdb_ids[pdb1]
-                    data1 = self.pdb_data[pdb1]
-                    id2 = self.pdb_ids[pdb2]
-                    data2 = self.pdb_data[pdb2]
-                    arr = [np.concatenate((data1, data2), axis=None).tolist()]
-                    self.max_length = max(len(arr[0]), self.max_length)
-                    self.x.append(arr)
-                    score_class = self.sdb.score_mapped(id1, id2)[0]
-                    self.y.append(score_class)
+                id1 = self.pdb_ids[pdb1]
+                data1 = self.pdb_data[pdb1]
+                id2 = self.pdb_ids[pdb2]
+                data2 = self.pdb_data[pdb2]
+                arr = [np.concatenate((data1, data2), axis=None).tolist()]
+                self.max_length = max(len(arr[0]), self.max_length)
+                self.x.append(arr)
+                score_class = self.sdb.score_mapped(id1, id2)[0]
+                self.y.append(score_class)
                 bar()
 
     def chunks(self, lst, n):
