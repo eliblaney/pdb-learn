@@ -41,10 +41,10 @@ class PDBBuilder:
         logging.info("Starting %s threads", cpus)
         with alive_bar(total_iterations) as bar:
             for chunk in pdb_chunks:
-                _thread.start_new_thread(self._build, (chunk, bar))                
+                _thread.start_new_thread(self._build, (chunk, bar))
 
         imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
-        self.x = np.array(self.x)
+        self.x = pd.DataFrame(self.x).to_numpy()
         self.x = imp.fit_transform(self.x)
         self.y = np.array(self.y)
 
