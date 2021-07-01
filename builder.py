@@ -27,8 +27,10 @@ class PDBBuilder:
         self.pdb_ids = pickle.load(f)
         f.close()
 
-    def build(self, cpus=8):
+    def build(self, limit=0, cpus=8):
         pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
+        if limit > 0:
+            pdbs = pdbs[:limit]
         pdb_chunks = self.chunks(pdbs, cpus)
 
         self.x = []
