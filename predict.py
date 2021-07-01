@@ -105,13 +105,13 @@ def load_model(path):
     name = os.path.basename(path).split(".")[0]
     model = joblib.load(path)
     m = None
-    if name == 'Bayesian Ridge Regression':
+    if name == 'bayesian_ridge_regression':
         m = BayesianRidgeRegression(None)
-    elif name == 'Logistic Regression':
+    elif name == 'logistic_regression':
         m = LogisticRegression(None)
-    elif name == 'Random Forest Classifier':
+    elif name == 'random_forest_classifier':
         m = RandomForestClassifier(None)
-    elif name == 'Support Vector Classifier':
+    elif name == 'support_vector_classifier':
         m = SupportVectorClassifier(None)
     else:
         return None
