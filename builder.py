@@ -42,7 +42,7 @@ class PDBBuilder:
         threads = []
         with alive_bar(total_iterations) as bar:
             for chunk in pdb_chunks:
-                t = Thread(target=self._build, (chunk, bar))
+                t = Thread(target=self._build, args=(chunk, bar))
                 t.start()
                 threads.append(t)
 
