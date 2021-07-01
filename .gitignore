@@ -7,3 +7,4 @@ pdbbind*
 images/
 *.rtf
 *.log
+*.npy
