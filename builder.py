@@ -31,7 +31,7 @@ class PDBBuilder:
 
     
     def partition(self, num_partitions, cpus=8):
-        pdbs = self.chunks(self.pdbs, num_partitions)
+        pdbs = self.chunks(self.pdbs, len(self.pdbs) / num_partitions)
         i = 0
         for p in pdbs:
             logging.info("Buliding partition %s", i)
