@@ -30,8 +30,7 @@ class PDBBuilder:
         self.pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
 
     
-    def partition(self, num_partitions, cpus=8):
-        k = len(self.pdbs) / num_partitions
+    def partition(self, cpus=8):
         i = 0
         self.x = []
         self.y = []
@@ -65,7 +64,7 @@ class PDBBuilder:
         logging.info("Finished")
 
     def _partition(self, p1, p2):
-        for pdb1 in p1
+        for pdb1 in p1:
             for pdb2 in p2:
                 id1 = self.pdb_ids[pdb1]
                 data1 = self.pdb_data[pdb1]
@@ -155,4 +154,4 @@ if __name__ == "__main__":
     logging.info("Finished importing databases.")
 
     b = PDBBuilder(sdb)
-    b.partition(30)
+    b.partition()
