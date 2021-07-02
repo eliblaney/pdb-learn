@@ -31,12 +31,71 @@ class PDBBuilder:
 
     
     def partition(self, num_partitions, cpus=8):
-        pdbs = self.chunks(self.pdbs, len(self.pdbs) / num_partitions)
+        k = len(self.pdbs) / num_partitions
         i = 0
-        for p in pdbs:
-            logging.info("Buliding partition %s", i)
-            self.build(pdbs=p, inputfile='input_' + str(i), outputfile='output_' + str(i))
-            i = i + 1
+        self.x = []
+        self.y = []
+        threads = []
+        num_big = 2
+        num_small = 4
+        num_partitions = num_big * num_small
+        with alive_bar(num_partitions) as bar:
+            c = self.chunk_squares(num_big, num_small * cpus, self.pdbs, self.pdbs)
+            cpunum = 0
+            for p1, p2 in c:
+                i = i + 1
+                logging.info("Starting thread %s of %s", i, num_partitions * cpus)
+                t = Thread(target=self._partition, args=(p1, p2))
+                t.start()
+                threads.append(t)
+                cpunum = cpunum + 1
+
+                if cpunum == cpus:
+                    logging.debug("Waiting on %s threads...", cpus)
+                    for t in threads:
+                        t.join()
+                    logging.info("Saving partition %s", i)
+                    self.save(inputfile='inputs_' + str(i), outputfile='outputs_' + str(i))
+                    threads = []
+                    self.x = []
+                    self.y = []
+                    bar()
+
+        self.save(inputfile='inputs_' + str(i), outputfile='outputs_' + str(i))
+        logging.info("Finished")
+
+    def _partition(self, p1, p2):
+        for pdb1 in p1
+            for pdb2 in p2:
+                id1 = self.pdb_ids[pdb1]
+                data1 = self.pdb_data[pdb1]
+                id2 = self.pdb_ids[pdb2]
+                data2 = self.pdb_data[pdb2]
+                arr = [np.concatenate((data1, data2), axis=None).tolist()]
+                self.x.append(arr)
+                score_class = self.sdb.score_mapped(id1, id2)[0]
+                self.y.append(score_class)
+
+    def chunk_squares(self, m, n, lst1, lst2):
+        l1 = len(lst1)
+        l2 = len(lst2)
+        k1 = int(l1/m)
+        k2 = int(l2/n)
+        for i in range(0, l1, k1):
+            for j in range(0, l2, k2):
+                yield (lst1[i:i + k1], lst2[j:j + k2])
+
+    def save(self, inputfile='inputs', outputfile='outputs', folder='data'):
+        imp = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value=0)
+        self.x = pd.DataFrame(self.x).to_numpy()
+        self.x = imp.fit_transform(self.x)
+        self.y = np.array(self.y)
+
+        logging.debug("Input shape: %s", self.x.shape)
+        logging.debug("Output shape: %s", self.y.shape)
+
+        np.save(folder + '/' + inputfile, self.x)
+        np.save(folder + '/' + outputfile, self.y)
 
     def build(self, pdbs=None, cpus=8, inputfile='inputs', outputfile='outputs'):
         if pdbs is None:
