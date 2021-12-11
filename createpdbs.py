@@ -18,7 +18,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         pdb_data = {}
         pdb_ids = {}
         for p in pdbs:
-            pdb_data[p] = pdb.get_pdb_data(p, sdb.pdbbind(p), sdb.pdbbind_pocket(p))
+            pdb_data[p] = pdb.get_pdb_data(p, sdb.pdbbind(p))
             pdb_ids[p] = sdb.strings_id(p)
             bar()
             if LIMIT != -1:
