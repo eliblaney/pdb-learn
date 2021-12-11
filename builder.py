@@ -71,15 +71,15 @@ class PDBBuilder:
                 id2 = self.pdb_ids[pdb2]
                 data2 = self.pdb_data[pdb2]
                 arr = [np.concatenate((data1, data2), axis=None).tolist()]
-                self.x.append(arr)
+                self.x = np.append(self.x, arr)
                 score_class = self.sdb.score_mapped(id1, id2)[0]
-                self.y.append(score_class)
+                self.y = np.append(self.y, score_class)
 
     def chunk_squares(self, m, n, lst1, lst2):
         l1 = len(lst1)
         l2 = len(lst2)
-        k1 = int(l1/m)
-        k2 = int(l2/n)
+        k1 = max(1, int(l1/m))
+        k2 = max(1, int(l2/n))
         for i in range(0, l1, k1):
             for j in range(0, l2, k2):
                 yield (lst1[i:i + k1], lst2[j:j + k2])

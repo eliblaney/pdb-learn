@@ -22,7 +22,7 @@ def main():
 
     if not validate.exists('data/'):
         logging.info("Building inputs and outputs...")
-        builder.build(sdb)
+        builder.PDBBuilder(sdb).partition()
     else:
         logging.info("Found data folder, skipping partioning phase.")
 
