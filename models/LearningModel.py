@@ -18,6 +18,10 @@ class LearningModel:
 
     def fit(self, x, y):
         raise NotImplementedError("Subclass must implement fit(x,y)")
+
+    def partial_fit(self, x, y):
+        raise NotImplementedError("Subclass must implement partial_fit(x,y)")
+
     def predict(self, x):
         return self.model.predict(x)
 

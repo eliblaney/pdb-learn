@@ -17,6 +17,13 @@ class BayesianRidgeRegression(LearningModel):
             self.model.fit(x_train, y_train)
             self.accuracy.append(explained_variance_score(y_test, self.model.predict(x_test)))
 
+    def partial_fit(self, x, y):
+        for train_index, test_index in self.kf.split(x, y):
+            x_train, x_test = x[train_index], x[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+            self.model.partial_fit(x_train, y_train)
+            self.accuracy.append(explained_variance_score(y_test, self.model.predict(x_test)))
+
     @staticmethod
     def get_default_options():
         return {}
