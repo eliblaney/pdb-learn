@@ -25,6 +25,7 @@ default_mutators = [
 ]
 
 def train_partitioned(sdb, folder='data', models=default_models, mutators=default_mutators):
+    # Input and output files should be similarly named, with 'input' or 'output' present
     inputs = [file for file in os.listdir(folder) if 'input' in file]
     outputs = [x.replace('input', 'output') for x in inputs]
 
@@ -51,7 +52,7 @@ def train_partitioned(sdb, folder='data', models=default_models, mutators=defaul
 
                     logging.debug("Training %s on partition %s", m.get_full_name(), str(i))
                     try:
-                        m.fit(x, y)
+                        m.partial_fit(x, y)
                     except ValueError:
                         logging.warning("Only one class found, skipping...")
                     except Exception as e:
