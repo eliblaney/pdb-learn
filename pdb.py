@@ -14,8 +14,6 @@ with warnings.catch_warnings():
         rs = build_residues(structure_id, pdb_filename, [])
         # rs = build_residues(structure_id, pocket_filename, rs)
 
-        # TODO: Add ligand primary sequences
-
         return rs
         # Finally, flatten the array of residues
         # return np.ravel(rs, order='C')
