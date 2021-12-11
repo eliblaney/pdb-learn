@@ -29,7 +29,7 @@ def main():
     if not validate.exists('saved_models/'):
         logging.info("Starting training")
         # Train all models
-        max_length = train.train(sdb)
+        max_length = train.train_partitioned(sdb)
 
         if validate.exists('saved_models/'):
             logging.info("Starting predictions")

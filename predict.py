@@ -13,11 +13,11 @@ import pdb
 import logging
 import config
 
-def rand_pdb():
+def rand_pdb(sdb, pdbs):
     """Select a random PDB entry from the set"""
     p = random.choice(pdbs)
-    pdb_data = pdb.get_pdb_data(p, strings.pdbbind(p, general=True))
-    strings_id = strings.strings_id(p)
+    pdb_data = pdb.get_pdb_data(p, sdb.pdbbind(p, general=True))
+    strings_id = sdb.strings_id(p)
     return (pdb_data, strings_id)
 
 def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_file='results.csv', max_length=3720, model_dir='saved_models/'):
@@ -34,7 +34,7 @@ def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_fi
     for i in range(num):
         logging.debug('----------------------------')
         logging.debug('Round: {} [of {}]', i + 1, num)
-        (predictions, results) = _run_predictions(predictions, results, models, max_length, each)
+        (predictions, results) = _run_predictions(sdb, pdbs, predictions, results, models, max_length, each)
 
     logging.debug('----------------------------')
     logging.debug('Saving predictions...')
@@ -43,17 +43,17 @@ def predict(sdb, num=1, each=1000, prediction_file='predictions.csv', results_fi
 
     return (prediction_file, results_file)
 
-def _run_predictions(predictions, results, models, max_len=3720, num=100):
+def _run_predictions(sdb, pdbs, predictions, results, models, max_len=3720, num=100):
     """Run num predictions on the models"""
     logging.debug("Max length: %s", max_len)
     xs = pd.DataFrame(columns=np.arange(0,max_len))
     ys = []
     i = num
     while i > 0:
-        (p1d, p1i) = rand_pdb()
-        (p2d, p2i) = rand_pdb()
+        (p1d, p1i) = rand_pdb(sdb, pdbs)
+        (p2d, p2i) = rand_pdb(sdb, pdbs)
         if p1i is not None and p2i is not None:
-            actualscore = strings.score_mapped(p1i, p2i)[0]
+            actualscore = sdb.score_mapped(p1i, p2i)[0]
             if actualscore != -1: # Filter for combinations that have existing scores
                 ys.append(actualscore)
                 arr = [np.concatenate((p1d, p2d), axis=None).tolist()]

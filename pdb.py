@@ -8,15 +8,14 @@ with warnings.catch_warnings():
 
     parser = PDBParser(PERMISSIVE=1)
 
-    def get_pdb_data(structure_id, pdb_filename, pocket_filename):
+    def get_pdb_data(structure_id, pdb_filename):
         """Get a representation of the PDB data of a particular protein"""
 
         rs = build_residues(structure_id, pdb_filename, [])
         # rs = build_residues(structure_id, pocket_filename, rs)
+        # ...can add more input data here
 
         return rs
-        # Finally, flatten the array of residues
-        # return np.ravel(rs, order='C')
 
 
     def build_residues(structure_id, filename, rs):
