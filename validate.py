@@ -15,7 +15,7 @@ def exists(file):
         if len(found) > 0 and len(notfound) > 0:
             logging.warning("The following files were found: %s, but some were missing: %s", ", ".join(found), ", ".join(notfound))
             return False
-        return True
+        return len(notfound) == 0
     elif os.path.isdir(file):
         # Validate if there is anything inside the folder
         return any(os.scandir(file))
