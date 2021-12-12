@@ -11,23 +11,18 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     LIMIT = -1
     pdbs = sdb.get_pdbs()
     total = LIMIT if LIMIT != -1 else len(pdbs)
-    total = 3*total+2
+    total = 4*total+2
 
     with alive_bar(title='Parsing PDBs', total=total) as bar:
         bar.text('Building dictionaries')
         pdb_data = {}
         pdb_ids = {}
         longest_num_residues = -1
-        longest_residue_length = -1
         for p in pdbs:
             d = pdb.get_pdb_data(p, sdb.pdbbind(p))
             num_residues = len(d)
             if num_residues > longest_num_residues:
                 longest_num_residues = num_residues
-            for residue in d:
-                residue_length = len(residue)
-                if residue_length > longest_residue_length:
-                    longest_residue_length = residue_length
 
             pdb_data[p] = d
             pdb_ids[p] = sdb.strings_id(p)
@@ -35,6 +30,14 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
             if LIMIT != -1:
                 LIMIT = LIMIT - 1
                 if LIMIT == 0: break
+
+        longest_residue_length = -1
+        for d in pdb_data.values():
+            for residue in d:
+                residue_length = len(residue)
+                if residue_length > longest_residue_length:
+                    longest_residue_length = residue_length
+            bar()
 
         logging.debug("Longest number of residues: %s", longest_num_residues)
         logging.debug("Longest residue length: %s", longest_residue_length)
