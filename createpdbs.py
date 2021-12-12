@@ -27,7 +27,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
             for residue in d:
                 residue_length = len(residue)
                 if residue_length > longest_residue_length:
-                    longest_residue_length = residue_len
+                    longest_residue_length = residue_length
 
             pdb_data[p] = d
             pdb_ids[p] = sdb.strings_id(p)
