@@ -84,7 +84,7 @@ def pad(to_pad, N, padder):
     return to_pad
 
 def pad_dict(to_pad, N, padder):
-    for k, v in to_pad:
+    for k, v in to_pad.items():
         to_pad[k] = pad(v, N, padder)
 
     return to_padd
