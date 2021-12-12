@@ -25,7 +25,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
             if num_residues > longest_num_residues:
                 longest_num_residues = num_residues
             for residue in d:
-                residue_length = len(resideu)
+                residue_length = len(residue)
                 if residue_length > longest_residue_length:
                     longest_residue_length = residue_len
 
