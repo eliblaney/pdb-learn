@@ -11,21 +11,35 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     LIMIT = -1
     pdbs = sdb.get_pdbs()
     total = LIMIT if LIMIT != -1 else len(pdbs)
-    total = 5*total+2
+    total = 3*total+2
 
     with alive_bar(title='Parsing PDBs', total=total) as bar:
         bar.text('Building dictionaries')
         pdb_data = {}
         pdb_ids = {}
+        longest_num_residues = -1
+        longest_residue_length = -1
         for p in pdbs:
-            pdb_data[p] = pdb.get_pdb_data(p, sdb.pdbbind(p))
+            d = pdb.get_pdb_data(p, sdb.pdbbind(p))
+            num_residues = len(d)
+            if num_residues > longest_num_residues:
+                longest_num_residues = num_residues
+            for residue in d:
+                residue_length = len(resideu)
+                if residue_length > longest_residue_length:
+                    longest_residue_length = residue_len
+
+            pdb_data[p] = d
             pdb_ids[p] = sdb.strings_id(p)
             bar()
             if LIMIT != -1:
                 LIMIT = LIMIT - 1
                 if LIMIT == 0: break
 
-        pdb_data = pad_pdbs(bar, pdb_data)
+        logging.debug("Longest number of residues: %s", longest_num_residues)
+        logging.debug("Longest residue length: %s", longest_residue_length)
+
+        pdb_data = pad_pdbs(bar, pdb_data, longest_num_residues, longest_residue_length)
 
         bar.text('Exporting')
         f = open(pdb_data_file, 'wb')
@@ -37,38 +51,19 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         f.close()
         bar()
 
-def pad_pdbs(bar, pdb_data):
-    longest_residue_length = -1
-    bar.text("Finding max residue length")
-    for pdb in pdb_data.values():
-        for residue in pdb:
-            residue_len = len(residue)
-            if residue_len > longest_residue_length:
-                longest_residue_length = residue_len
-        bar()
-    logging.debug("Longest residue length: %s", longest_residue_length)
-
+def pad_pdbs(bar, pdb_data, longest_num_residues, longest_residue_length):
     bar.text("Padding residues")
     for pdb in pdb_data:
-        pad(pdb_data[pdb], longest_residue_length, [np.nan])
+        pdb_data[pdb] = pad(pdb_data[pdb], longest_residue_length, [np.nan])
         bar()
-
-    longest_num_residues = -1
-    bar.text("Finding max pdb length")
-    for pdb in pdb_data.values():
-        num_residues = len(pdb)
-        if num_residues > longest_num_residues:
-            longest_num_residues = num_residues
-        bar()
-    logging.debug("Longest number of residues: %s", longest_num_residues)
 
     bar.text("Padding pdbs")
-    pad(pdb_data.values(), longest_num_residues, [np.nan] * longest_residue_length)
+    pdb_data = pad_dict(pdb_data, longest_num_residues, [np.nan] * longest_residue_length)
 
-    bar.text("Flattening")
-    for pdb in pdb_data:
-        pdb_data[pdb] = flatten(pdb_data[pdb])
-        bar()
+    # bar.text("Flattening")
+    # for pdb in pdb_data:
+        # pdb_data[pdb] = flatten(pdb_data[pdb])
+        # bar()
 
     return pdb_data
 
@@ -87,6 +82,12 @@ def pad(to_pad, N, padder):
         sublist += padder * (N - len(sublist))
 
     return to_pad
+
+def pad_dict(to_pad, N, padder):
+    for k, v in to_pad:
+        to_pad[k] = pad(v, N, padder)
+
+    return to_padd
 
 if __name__ == "__main__":
     logging.info("Importing databases...")
