@@ -11,7 +11,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     LIMIT = -1
     pdbs = sdb.get_pdbs()
     total = LIMIT if LIMIT != -1 else len(pdbs)
-    total = 4*total+2
+    total = 5*total+2
 
     with alive_bar(title='Parsing PDBs', total=total) as bar:
         bar.text('Building dictionaries')
@@ -63,10 +63,10 @@ def pad_pdbs(bar, pdb_data, longest_num_residues, longest_residue_length):
     bar.text("Padding pdbs")
     pdb_data = pad_dict(pdb_data, longest_num_residues, [np.nan] * longest_residue_length)
 
-    # bar.text("Flattening")
-    # for pdb in pdb_data:
-        # pdb_data[pdb] = flatten(pdb_data[pdb])
-        # bar()
+    bar.text("Flattening")
+    for pdb in pdb_data:
+        pdb_data[pdb] = flatten(pdb_data[pdb])
+        bar()
 
     return pdb_data
 
