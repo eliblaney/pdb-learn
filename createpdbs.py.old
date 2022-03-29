@@ -6,13 +6,12 @@ import pickle
 import pdb
 import logging
 from alive_progress import alive_bar
-import rpdb
 
 def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
     LIMIT = -1
     pdbs = sdb.get_pdbs()
     total = LIMIT if LIMIT != -1 else len(pdbs)
-    total = 2*total+3
+    total = 5*total+2
 
     with alive_bar(title='Parsing PDBs', total=total) as bar:
         bar.text('Building dictionaries')
@@ -43,9 +42,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         logging.debug("Longest number of residues: %s", longest_num_residues)
         logging.debug("Longest residue length: %s", longest_residue_length)
 
-        bar.text("Padding residues")
-        pdb_data = rpdb.pad_flatten(pdb_data, longest_num_residues, longest_residue_length)
-        bar()
+        pdb_data = pad_pdbs(bar, pdb_data, longest_num_residues, longest_residue_length)
 
         bar.text('Exporting')
         f = open(pdb_data_file, 'wb')
@@ -56,6 +53,44 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         pickle.dump(pdb_ids, f)
         f.close()
         bar()
+
+def pad_pdbs(bar, pdb_data, longest_num_residues, longest_residue_length):
+    bar.text("Padding residues")
+    for pdb in pdb_data:
+        pdb_data[pdb] = pad(pdb_data[pdb], longest_residue_length, [np.nan])
+        bar()
+
+    bar.text("Padding pdbs")
+    pdb_data = pad_dict(pdb_data, longest_num_residues, [np.nan] * longest_residue_length)
+
+    bar.text("Flattening")
+    for pdb in pdb_data:
+        pdb_data[pdb] = flatten(pdb_data[pdb])
+        bar()
+
+    return pdb_data
+
+def flatten(arr):
+    result = np.array([])
+    for item in arr:
+        if isinstance(item, list):
+            result = np.concatenate([result, flatten(item)])
+        else:
+            result = np.append(result, [item])
+
+    return result
+
+def pad(to_pad, N, padder):
+    for sublist in to_pad:
+        sublist += padder * (N - len(sublist))
+
+    return to_pad
+
+def pad_dict(to_pad, N, padder):
+    for k, v in to_pad.items():
+        to_pad[k] = pad(v, N, padder)
+
+    return to_pad
 
 if __name__ == "__main__":
     logging.info("Importing databases...")
