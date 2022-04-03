@@ -17,7 +17,7 @@ formatter = logging.Formatter('[%(levelname)s] %(message)s')
 console.setFormatter(formatter)
 logging.getLogger().addHandler(console)
 
-config_handler.set_global(unknown='balls_scrolling', bar='blocks')
+config_handler.set_global(unknown='waves', bar='blocks')
 
 logging.debug("Program started %s", now)
 

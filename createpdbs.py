@@ -8,11 +8,11 @@ import logging
 from alive_progress import alive_bar
 import rpdb
 
-def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
-    LIMIT = -1
+def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl', limit=-1, offset=0):
     pdbs = sdb.get_pdbs()
-    total = LIMIT if LIMIT != -1 else len(pdbs)
+    total = limit if limit != -1 else len(pdbs)
     total = 2*total+3
+    pdbs = pdbs[offset:limit+offset]
 
     with alive_bar(title='Parsing PDBs', total=total) as bar:
         bar.text('Building dictionaries')
@@ -28,9 +28,6 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
             pdb_data[p] = d
             pdb_ids[p] = sdb.strings_id(p)
             bar()
-            if LIMIT != -1:
-                LIMIT = LIMIT - 1
-                if LIMIT == 0: break
 
         longest_residue_length = -1
         for d in pdb_data.values():

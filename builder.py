@@ -1,3 +1,4 @@
+import os
 import config
 import pickle
 import numpy as np
@@ -13,23 +14,14 @@ class PDBBuilder:
     sdb = None
     x = []
     y = []
-    pdb_ids = None
-    pdb_data = None
-    pdbs = None
+    pdbs = []
+    pdb_ids = []
+    pdb_data = []
 
-    def __init__(self, sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
+    def __init__(self, sdb):
         self.sdb = sdb
-
-        f = open(pdb_data_file, 'rb')
-        self.pdb_data = pickle.load(f)
-        f.close()
-        f = open(pdb_ids_file, 'rb')
-        self.pdb_ids = pickle.load(f)
-        f.close()
-
-        self.pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
     
-    def partition(self, cpus=8):
+    def partition(self, cpus=8, pdbs_folder='pdbs/'):
         i = 0
         self.x = []
         self.y = []
@@ -37,27 +29,34 @@ class PDBBuilder:
         num_big = 2
         num_small = 4
         num_partitions = num_big * num_small
-        with alive_bar(num_partitions) as bar:
-            c = self.chunk_squares(num_big, num_small * cpus, self.pdbs, self.pdbs)
-            cpunum = 0
-            for p1, p2 in c:
-                i = i + 1
-                logging.info("Starting thread %s of %s", i, num_partitions * cpus)
-                t = Thread(target=self._partition, args=(p1, p2))
-                t.start()
-                threads.append(t)
-                cpunum = cpunum + 1
 
-                if cpunum == cpus:
-                    logging.debug("Waiting on %s threads...", cpus)
-                    for t in threads:
-                        t.join()
-                    logging.info("Saving partition %s", i)
-                    self.save(inputfile='inputs_' + str(i), outputfile='outputs_' + str(i))
-                    threads = []
-                    self.x = []
-                    self.y = []
-                    bar()
+        for pdb_num in range(len(os.listdir(pdbs_folder))):
+            logging.info("Building partition catalog #{}...".format(pdb_num + 1)
+            self.pdb_ids = np.load(pdbs_folder + '/' + 'pdb_ids_' + pdb_num + '.pkl', allow_pickle=True)
+            self.pdb_data = np.load(pdbs_folder + '/' + 'pdb_data_' + pdb_num + '.pkl', allow_pickle=True)
+            self.pdbs = [pdb for pdb in list(pdb_ids.keys()) if pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
+
+            with alive_bar(num_partitions) as bar:
+                c = self.chunk_squares(num_big, num_small * cpus)
+                cpunum = 0
+                for p1, p2 in c:
+                    i = i + 1
+                    logging.info("Starting thread %s of %s", i, num_partitions * cpus)
+                    t = Thread(target=self._partition, args=(p1, p2))
+                    t.start()
+                    threads.append(t)
+                    cpunum = cpunum + 1
+
+                    if cpunum == cpus:
+                        logging.debug("Waiting on %s threads...", cpus)
+                        for t in threads:
+                            t.join()
+                        logging.info("Saving partition %s", i)
+                        self.save(inputfile='inputs_' + str(i), outputfile='outputs_' + str(i))
+                        threads = []
+                        self.x = []
+                        self.y = []
+                        bar()
 
         self.save(inputfile='inputs_' + str(i), outputfile='outputs_' + str(i))
         logging.info("Finished")
@@ -74,7 +73,7 @@ class PDBBuilder:
                 score_class = self.sdb.score_mapped(id1, id2)[0]
                 self.y = np.append(self.y, score_class)
 
-    def chunk_squares(self, m, n, lst1, lst2):
+    def chunk_squares(self, m, n, lst1=self.pdbs, lst2=self.pdbs):
         l1 = len(lst1)
         l2 = len(lst2)
         k1 = max(1, int(l1/m))
@@ -95,9 +94,7 @@ class PDBBuilder:
         np.save(folder + '/' + inputfile, self.x)
         np.save(folder + '/' + outputfile, self.y)
 
-    def build(self, pdbs=None, cpus=8, inputfile='inputs', outputfile='outputs'):
-        if pdbs is None:
-            pdbs = self.pdbs
+    def build(self, pdbs, cpus=8, inputfile='inputs', outputfile='outputs'):
         pdb_chunks = self.chunks(pdbs, cpus)
 
         self.x = []

@@ -1,3 +1,4 @@
+import os
 import config
 import logging
 import strings
@@ -8,11 +9,15 @@ def main():
     sdb = strings.StringsDB()
     logging.info("Finished importing databases.")
 
-    if not validate.exists(['pdb_ids.pkl', 'pdb_data.pkl']):
+    if not validate.exists('pdbs/'):
+        os.mkdir('pdbs/')
         import createpdbs
         logging.info("Exporting PDBs...")
         # Read databases and store PDB representations
-        createpdbs.create(sdb)
+        limit=1500
+        for i in range(3):
+            logging.debug("Creating PDB files using createpdbs.create({}, {})...".format(limit, i*limit))
+            createpdbs.create(sdb, pdb_data_file='pdbs/pdb_data_' + i + '.pkl', pdb_ids_file='pdbs/pdb_ids_' + i + '.pkl', limit=limit, offset=i*limit)
         logging.info("Finished exporting PDBs.")
     else:
         logging.info("Found exported PDBs, skipping creation phase..")
@@ -20,7 +25,7 @@ def main():
     if not validate.exists('data/'):
         import builder
         logging.info("Building inputs and outputs...")
-        builder.PDBBuilder(sdb).partition()
+        builder.PDBBuilder(sdb).partition(cpus=1)
     else:
         logging.info("Found data folder, skipping partioning phase.")
 
