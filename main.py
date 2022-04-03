@@ -17,6 +17,7 @@ def main():
         # Read databases and store PDB representations
         limit=1500
         for i in range(3):
+            logging.info("Exporting {}/{}...".format(i + 1, 3))
             logging.debug("Creating PDB files using createpdbs.create({}, {})...".format(limit, i*limit))
             createpdbs.create(sdb, pdb_data_file='pdbs/pdb_data_' + str(i) + '.pkl', pdb_ids_file='pdbs/pdb_ids_' + str(i) + '.pkl', limit=limit, offset=i*limit)
         logging.info("Finished exporting PDBs.")
