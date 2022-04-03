@@ -73,7 +73,11 @@ class PDBBuilder:
                 score_class = self.sdb.score_mapped(id1, id2)[0]
                 self.y = np.append(self.y, score_class)
 
-    def chunk_squares(self, m, n, lst1=self.pdbs, lst2=self.pdbs):
+    def chunk_squares(self, m, n, lst1=None, lst2=None):
+        if not lst1:
+            lst1 = self.pdbs
+        if not lst2:
+            lst2 = self.pdbs
         l1 = len(lst1)
         l2 = len(lst2)
         k1 = max(1, int(l1/m))
