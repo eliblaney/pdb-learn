@@ -32,8 +32,8 @@ class PDBBuilder:
 
         for pdb_num in range(len(os.listdir(pdbs_folder))):
             logging.info("Building partition catalog #{}...".format(pdb_num + 1)
-            self.pdb_ids = np.load(pdbs_folder + '/' + 'pdb_ids_' + pdb_num + '.pkl', allow_pickle=True)
-            self.pdb_data = np.load(pdbs_folder + '/' + 'pdb_data_' + pdb_num + '.pkl', allow_pickle=True)
+            self.pdb_ids = np.load(pdbs_folder + '/' + 'pdb_ids_' + str(pdb_num) + '.pkl', allow_pickle=True)
+            self.pdb_data = np.load(pdbs_folder + '/' + 'pdb_data_' + str(pdb_num) + '.pkl', allow_pickle=True)
             self.pdbs = [pdb for pdb in list(pdb_ids.keys()) if pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
 
             with alive_bar(num_partitions) as bar:
