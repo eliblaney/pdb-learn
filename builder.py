@@ -28,7 +28,6 @@ class PDBBuilder:
         f.close()
 
         self.pdbs = [pdb for pdb in list(self.pdb_ids.keys()) if self.pdb_ids[pdb]] # Get PDB IDs that match StringDB IDs
-
     
     def partition(self, cpus=8):
         i = 0

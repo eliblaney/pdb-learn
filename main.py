@@ -1,10 +1,6 @@
 import config
 import logging
 import strings
-import createpdbs
-import train
-import predict
-import builder
 import validate
 
 def main():
@@ -13,6 +9,7 @@ def main():
     logging.info("Finished importing databases.")
 
     if not validate.exists(['pdb_ids.pkl', 'pdb_data.pkl']):
+        import createpdbs
         logging.info("Exporting PDBs...")
         # Read databases and store PDB representations
         createpdbs.create(sdb)
@@ -21,17 +18,20 @@ def main():
         logging.info("Found exported PDBs, skipping creation phase..")
 
     if not validate.exists('data/'):
+        import builder
         logging.info("Building inputs and outputs...")
         builder.PDBBuilder(sdb).partition()
     else:
         logging.info("Found data folder, skipping partioning phase.")
 
     if not validate.exists('saved_models/'):
+        import train
         logging.info("Starting training")
         # Train all models
         max_length = train.train_partitioned(sdb)
 
         if validate.exists('saved_models/'):
+            import predict
             logging.info("Starting predictions")
             # Run model predictions
             predict.predict(sdb, num=100, each=100, max_length=max_length)

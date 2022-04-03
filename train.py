@@ -61,6 +61,10 @@ def train_partitioned(sdb, folder='data', models=default_models, mutators=defaul
                     logging.debug("Accuracy of %s: %s", m.get_full_name(), m.get_accuracy())
                     m.save()
                     bar2()
+
+            # Free up memory
+            del x
+            del y
             bar()
             i = i + 1
 

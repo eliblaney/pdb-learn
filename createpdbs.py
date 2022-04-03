@@ -55,6 +55,7 @@ def create(sdb, pdb_data_file='pdb_data.pkl', pdb_ids_file='pdb_ids.pkl'):
         f = open(pdb_ids_file, 'wb')
         pickle.dump(pdb_ids, f)
         f.close()
+        del pdbs, pdb_ids, pdb_data, f
         bar()
 
 if __name__ == "__main__":
