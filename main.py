@@ -10,7 +10,8 @@ def main():
     logging.info("Finished importing databases.")
 
     if not validate.exists('pdbs/'):
-        os.mkdir('pdbs/')
+        if not os.exists('pdbs/'):
+            os.mkdir('pdbs/')
         import createpdbs
         logging.info("Exporting PDBs...")
         # Read databases and store PDB representations
